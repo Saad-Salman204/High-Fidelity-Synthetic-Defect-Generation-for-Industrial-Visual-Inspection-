@@ -1,0 +1,37 @@
+name: Engineering or research task
+description: Scoped implementation task with verifiable completion
+title: 'Task: '
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Background and objective
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope, out of scope and implementation guidance
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and proposed workstream
+      description: Use actual issue numbers. Do not assign people without agreement.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Deliverables and acceptance checklist
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Testing, documentation and Definition of Done
+    validations:
+      required: true
+  - type: input
+    id: planning
+    attributes:
+      label: Priority, effort and milestone

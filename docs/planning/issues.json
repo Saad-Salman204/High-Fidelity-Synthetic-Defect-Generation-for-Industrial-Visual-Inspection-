@@ -1,0 +1,408 @@
+[
+  {
+    "id": "I01",
+    "title": "Confirm NEU provenance and permitted use",
+    "workstream": "Data",
+    "week": 1,
+    "priority": "P0",
+    "hours": 4,
+    "dependencies": [],
+    "labels": [
+      "type:research",
+      "area:data",
+      "priority:P0",
+      "effort:small"
+    ],
+    "body_path": "docs/planning/issues/I01.md",
+    "github_number": 1,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/1"
+  },
+  {
+    "id": "I02",
+    "title": "Validate and lock the development and GPU environment",
+    "workstream": "Shared",
+    "week": 1,
+    "priority": "P0",
+    "hours": 5,
+    "dependencies": [],
+    "labels": [
+      "type:maintenance",
+      "area:infrastructure",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I02.md",
+    "github_number": 2,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/2"
+  },
+  {
+    "id": "I03",
+    "title": "Implement dataset integrity and duplicate audit",
+    "workstream": "Data",
+    "week": 1,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I01",
+      "I02"
+    ],
+    "labels": [
+      "type:feature",
+      "area:data",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I03.md",
+    "github_number": 3,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/3"
+  },
+  {
+    "id": "I04",
+    "title": "Freeze reproducible group-aware real splits",
+    "workstream": "Data",
+    "week": 1,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I03"
+    ],
+    "labels": [
+      "type:feature",
+      "area:data",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I04.md",
+    "github_number": 4,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/4"
+  },
+  {
+    "id": "I05",
+    "title": "Implement shared grayscale preprocessing and loaders",
+    "workstream": "Data",
+    "week": 1,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I04"
+    ],
+    "labels": [
+      "type:feature",
+      "area:data",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I05.md",
+    "github_number": 5,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/5"
+  },
+  {
+    "id": "I06",
+    "title": "Select and record the pretrained diffusion candidate",
+    "workstream": "Generative ML",
+    "week": 1,
+    "priority": "P0",
+    "hours": 4,
+    "dependencies": [
+      "I02"
+    ],
+    "labels": [
+      "type:research",
+      "area:diffusion",
+      "priority:P0",
+      "effort:small"
+    ],
+    "body_path": "docs/planning/issues/I06.md",
+    "github_number": 6,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/6"
+  },
+  {
+    "id": "I07",
+    "title": "Build and verify the real-only classifier baseline",
+    "workstream": "Classification & Evaluation",
+    "week": 1,
+    "priority": "P0",
+    "hours": 10,
+    "dependencies": [
+      "I02",
+      "I05"
+    ],
+    "labels": [
+      "type:feature",
+      "area:classification",
+      "priority:P0",
+      "effort:large"
+    ],
+    "body_path": "docs/planning/issues/I07.md",
+    "github_number": 7,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/7"
+  },
+  {
+    "id": "I08",
+    "title": "Freeze experiment configuration and run-record interfaces",
+    "workstream": "Shared",
+    "week": 1,
+    "priority": "P0",
+    "hours": 5,
+    "dependencies": [
+      "I04",
+      "I06"
+    ],
+    "labels": [
+      "type:feature",
+      "area:infrastructure",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I08.md",
+    "github_number": 8,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/8"
+  },
+  {
+    "id": "I09",
+    "title": "Implement the minimal UNet LoRA training path",
+    "workstream": "Generative ML",
+    "week": 2,
+    "priority": "P0",
+    "hours": 10,
+    "dependencies": [
+      "I05",
+      "I06",
+      "I08"
+    ],
+    "labels": [
+      "type:feature",
+      "area:diffusion",
+      "priority:P0",
+      "effort:large"
+    ],
+    "body_path": "docs/planning/issues/I09.md",
+    "github_number": 9,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/9"
+  },
+  {
+    "id": "I10",
+    "title": "Run the GPU pilot and bounded LoRA adaptation",
+    "workstream": "Generative ML",
+    "week": 2,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I09"
+    ],
+    "labels": [
+      "type:research",
+      "area:diffusion",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I10.md",
+    "github_number": 10,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/10"
+  },
+  {
+    "id": "I11",
+    "title": "Implement seeded class-conditioned generation and provenance",
+    "workstream": "Generative ML",
+    "week": 2,
+    "priority": "P0",
+    "hours": 7,
+    "dependencies": [
+      "I10"
+    ],
+    "labels": [
+      "type:feature",
+      "area:generation",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I11.md",
+    "github_number": 11,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/11"
+  },
+  {
+    "id": "I12",
+    "title": "Validate synthetic quality and class labels",
+    "workstream": "Data",
+    "week": 2,
+    "priority": "P0",
+    "hours": 7,
+    "dependencies": [
+      "I11"
+    ],
+    "labels": [
+      "type:feature",
+      "area:generation",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I12.md",
+    "github_number": 12,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/12"
+  },
+  {
+    "id": "I13",
+    "title": "Add exploratory KID and qualitative generation assessment",
+    "workstream": "Classification & Evaluation",
+    "week": 2,
+    "priority": "P1",
+    "hours": 6,
+    "dependencies": [
+      "I12"
+    ],
+    "labels": [
+      "type:research",
+      "area:evaluation",
+      "priority:P1",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I13.md",
+    "github_number": 13,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/13"
+  },
+  {
+    "id": "I14",
+    "title": "Integrate the three classifier training arms",
+    "workstream": "Classification & Evaluation",
+    "week": 2,
+    "priority": "P0",
+    "hours": 7,
+    "dependencies": [
+      "I07",
+      "I08",
+      "I12"
+    ],
+    "labels": [
+      "type:feature",
+      "area:classification",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I14.md",
+    "github_number": 14,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/14"
+  },
+  {
+    "id": "I15",
+    "title": "Run the frozen three-arm classifier comparison",
+    "workstream": "Classification & Evaluation",
+    "week": 3,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I14",
+      "I13"
+    ],
+    "labels": [
+      "type:research",
+      "area:classification",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I15.md",
+    "github_number": 15,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/15"
+  },
+  {
+    "id": "I16",
+    "title": "Evaluate frozen models on the shared real test set",
+    "workstream": "Classification & Evaluation",
+    "week": 3,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I15"
+    ],
+    "labels": [
+      "type:feature",
+      "area:evaluation",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I16.md",
+    "github_number": 16,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/16"
+  },
+  {
+    "id": "I17",
+    "title": "Produce the comparative report and limitations discussion",
+    "workstream": "Shared",
+    "week": 3,
+    "priority": "P0",
+    "hours": 6,
+    "dependencies": [
+      "I13",
+      "I16"
+    ],
+    "labels": [
+      "type:documentation",
+      "area:infrastructure",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I17.md",
+    "github_number": 17,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/17"
+  },
+  {
+    "id": "I18",
+    "title": "Audit reproducibility and complete the research handoff",
+    "workstream": "Shared",
+    "week": 3,
+    "priority": "P0",
+    "hours": 5,
+    "dependencies": [
+      "I17"
+    ],
+    "labels": [
+      "type:documentation",
+      "area:infrastructure",
+      "priority:P0",
+      "effort:medium"
+    ],
+    "body_path": "docs/planning/issues/I18.md",
+    "github_number": 18,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/18"
+  },
+  {
+    "id": "I19",
+    "title": "Expand CPU CI for implemented contracts and failure cases",
+    "workstream": "Shared",
+    "week": 2,
+    "priority": "P1",
+    "hours": 4,
+    "dependencies": [
+      "I05",
+      "I08"
+    ],
+    "labels": [
+      "type:testing",
+      "area:infrastructure",
+      "priority:P1",
+      "effort:small"
+    ],
+    "body_path": "docs/planning/issues/I19.md",
+    "github_number": 19,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/19"
+  },
+  {
+    "id": "I20",
+    "title": "Assess optional mask-guided inpainting feasibility",
+    "workstream": "Generative ML",
+    "week": 2,
+    "priority": "P2",
+    "hours": 4,
+    "dependencies": [
+      "I12"
+    ],
+    "labels": [
+      "type:research",
+      "area:generation",
+      "priority:P2",
+      "effort:small"
+    ],
+    "body_path": "docs/planning/issues/I20.md",
+    "github_number": 20,
+    "github_url": "https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/issues/20"
+  }
+]

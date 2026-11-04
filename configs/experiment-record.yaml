@@ -1,0 +1,31 @@
+# Template only: null fields are unknown, not measurements.
+schema_version: 1
+status: planned
+run_id: null
+stage: null
+arm: null
+git_commit: null
+config_sha256: null
+dataset_archive_sha256: null
+split_manifest_sha256: null
+synthetic_manifest_sha256: null
+class_mapping_sha256: null
+base_model_id: null
+base_revision: null
+adapter_sha256: null
+classifier_weights: null
+seed: null
+hyperparameters: {}
+sample_counts: {}
+hardware:
+  gpu: null
+  vram_gb: null
+  cuda: null
+  driver: null
+environment_file: null
+elapsed_seconds: null
+metrics: null
+artifacts: []
+failures: []
+limitations: []
+license_record: null
