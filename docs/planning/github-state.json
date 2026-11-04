@@ -51,5 +51,11 @@
     "I19": 19,
     "I20": 20
   },
-  "verified_date": "2026-11-04"
+  "verified_date": "2026-11-04",
+  "foundation_branch": "docs/planning-foundation",
+  "foundation_pr": 21,
+  "project_board": null,
+  "project_blocker": "Missing project OAuth scope",
+  "branch_protection": "Unavailable: HTTP 403 account plan limitation for private repository",
+  "first_verified_ci_run": 41840825661
 }

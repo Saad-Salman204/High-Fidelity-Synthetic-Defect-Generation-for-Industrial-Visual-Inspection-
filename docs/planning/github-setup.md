@@ -2,6 +2,8 @@
 
 Existing repository is reused; no duplicate repository is created. Authenticated owner: `Saad-Salman204`; repository is private and default branch is `main`. See [machine-readable verified state](github-state.json) and [backlog](backlog.md).
 
+The foundation is published on `docs/planning-foundation` in [PR #21](https://github.com/Saad-Salman204/High-Fidelity-Synthetic-Defect-Generation-for-Industrial-Visual-Inspection-/pull/21), awaiting peer review. Review and merge it before expecting the new landing page/templates/Dependabot configuration on `main`. No implementation issue is closed by this PR.
+
 ## Labels and milestones
 
 20 labels: type feature/research/documentation/testing/maintenance/bug; area data/diffusion/generation/classification/evaluation/infrastructure; priority P0/P1/P2; status blocked/needs-review; effort small/medium/large. Prefixes are `type:`, `area:`, `priority:`, `status:`, `effort:`. Existing GitHub issue open/closed state remains authoritative; no redundant open/closed labels.
