@@ -1,0 +1,47 @@
+# Proposed values, not an executable training configuration yet.
+schema_version: 1
+status: proposed
+split:
+  seed: 42
+  ratios: [0.70, 0.15, 0.15]
+  group_duplicates: true
+classes:
+  crazing: 0
+  inclusion: 1
+  patches: 2
+  pitted_surface: 3
+  rolled_in_scale: 4
+  scratches: 5
+diffusion:
+  model_id: stable-diffusion-v1-5/stable-diffusion-v1-5
+  revision: null
+  resolution: 512
+  lora_rank: 4
+  lora_alpha: 4
+  learning_rate: 0.0001
+  batch_size: 1
+  gradient_accumulation: 4
+  max_steps: 1000
+generation:
+  target_accepted: 600
+  minimum_accepted: 300
+  maximum_candidates: 1000
+  inference_steps: 30
+  guidance_scale: 7.5
+classification:
+  architecture: resnet18
+  weights: null
+  resolution: 224
+  seeds: [42, 43, 44]
+  batch_size: 24
+  max_steps: 1000
+  optimizer: AdamW
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler: cosine
+  validation_interval: 100
+  mixed_synthetic_fraction: 0.5
+  selection_metric: macro_f1
+paths:
+  data_root: data/local
+  artifact_root: artifacts

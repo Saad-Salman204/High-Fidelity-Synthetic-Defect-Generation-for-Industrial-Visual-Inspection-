@@ -1,0 +1,19 @@
+name: Bug or research-integrity defect
+description: Reproducible incorrect behavior or protocol violation
+title: 'Bug: '
+labels: ['type:bug']
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Expected behavior, actual behavior and reproduction
+      description: Include config/commit/environment; never attach credentials or private data.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact and affected experiments
+      description: State whether leakage, invalid metrics or lost artifacts are possible.
+    validations:
+      required: true

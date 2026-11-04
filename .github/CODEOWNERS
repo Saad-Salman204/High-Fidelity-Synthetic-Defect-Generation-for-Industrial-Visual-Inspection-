@@ -1,0 +1,4 @@
+# No active ownership rules until GitHub handles and consent are confirmed.
+# Suggested paths: data/configs -> A; diffusion/generation -> B;
+# classification/evaluation -> C; docs/protocol/CI -> shared peer review.
+# Add actual @handles with repository write access; never invent identities.
