@@ -5,7 +5,7 @@ Accepted here means mandated by the request, not experimentally validated. Propo
 | ID / status | Decision and alternatives | Consequences / acceptance gate |
 | --- | --- | --- |
 | ADR-001 Accepted | Python/PyTorch ecosystem; avoid a multi-framework stack | Matches requested preference; exact environment tested in I02 |
-| ADR-002 Proposed | SD v1.5 512 rather than SDXL/FLUX | Lower expected resource cost; model revision/license and GPU pilot I06/I10 decide |
+| ADR-002 Proposed (2026-11-13) | SD v1.5 at 512 px, with SD v1.4 as the source fallback. See [candidate comparison, revisions and pilot gates](../research/diffusion-selection.md). | University hardware, quota, acquired weight checksums, runtime compatibility and defect fidelity remain unverified. Revisit resolution if the I10 pilot exceeds memory. |
 | ADR-003 Proposed | One UNet attention LoRA, frozen VAE/text encoder; not six adapters/full fine-tuning | Shares statistical strength but may confuse classes; I09/I10 inspect trainable parameters and fidelity |
 | ADR-004 Proposed | ResNet-18 instead of simultaneous EfficientNet study | Less comparison complexity; I07 baseline verifies input and compute |
 | ADR-005 Proposed | Group-aware stratified 70/15/15; not random augmented-image split | Exact counts may vary; I04 peer audit freezes hash |
