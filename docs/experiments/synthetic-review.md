@@ -52,3 +52,5 @@ has no accepted samples, the summary flags it and #14 will reject the pool.
 Review outputs must be ignored by Git. Source manifests and images remain
 available for audit. Real candidate fidelity and reviewer agreement remain
 pending until the university generates images.
+
+Use the frozen export as input to the [exploratory CPU assessment](synthetic-quality.md).

@@ -42,6 +42,8 @@ Synthetic JSONL: `schema_version,image_id,relative_path,sha256,class_id,class_na
 
 `parent_ids=[]` and `mask_id=null` for text-to-image; optional inpainting parents/masks must resolve exclusively to training-approved sources. `quality_status` is `pending`, `accepted` or `rejected`. All candidates remain in the ledger; training loader admits only accepted records. Class prompts are intended labels until review. Synthetic records can never have real-test membership.
 
+The #13 quality evaluator consumes the #12 review export and verified frozen split. It reads only real training pixels and scores only accepted synthetic rows. Version 1 `quality.json` records source and review hashes, extractor identity, preprocessing, sampling parameters, overall and per-class KID status and statistics, grid image IDs, and reviewer observations. Unavailable statistics are null with explicit reasons. The evaluator never writes to the review ledger.
+
 The [generation CLI](../experiments/generate-candidates.md) writes pending rows
 with `real_manifest_sha256` and adapter checkpoint provenance. #12 reviews those
 rows and preserves their provenance in a separate accepted-only export for #14.
