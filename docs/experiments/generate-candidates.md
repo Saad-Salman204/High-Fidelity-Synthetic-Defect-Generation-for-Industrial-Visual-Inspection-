@@ -47,3 +47,5 @@ quality and near-duplicates against the permitted sources. Preserve the
 candidate ledger. Write a separate accepted-only export with reviewer IDs
 and the original provenance fields for #14. Use the generation output
 directory as the image root when consuming that export.
+
+Use the [synthetic review guide](synthetic-review.md) to run the CPU audit and record both reviews.

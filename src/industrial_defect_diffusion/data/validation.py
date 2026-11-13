@@ -34,7 +34,7 @@ def _filename_class(stem: str) -> str | None:
     return _class_name(prefix) if separator and index.isdecimal() else None
 
 
-def _difference_hash(image: Image.Image) -> int:
+def difference_hash(image: Image.Image) -> int:
     """Encode horizontal brightness changes as 64 bits."""
     pixels = list(image.resize((9, 8), Image.Resampling.LANCZOS).get_flattened_data())
     value = 0
@@ -92,7 +92,7 @@ def _inspect_file(path: Path, relative: str) -> dict[str, Any]:
             else:
                 image.load()
                 if image.mode == "L" and not problems:
-                    record["dhash"] = f"{_difference_hash(image):016x}"
+                    record["dhash"] = f"{difference_hash(image):016x}"
     except (OSError, ValueError, SyntaxError, Image.DecompressionBombError):
         problems.append("unreadable_image")
     return record
