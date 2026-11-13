@@ -4,6 +4,7 @@ import math
 import random
 from collections import Counter, defaultdict
 from collections.abc import Callable
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
@@ -28,10 +29,14 @@ def build_model(weights: str, local_weights: Path | None = None) -> nn.Module:
     return model
 
 
-def load_checkpoint(path: Path, device: torch.device | str = "cpu") -> nn.Module:
+def load_checkpoint(path: Path | BytesIO, device: torch.device | str = "cpu") -> nn.Module:
     """Load a saved baseline model for inference."""
     checkpoint = torch.load(path, map_location="cpu", weights_only=True)
-    if checkpoint["schema_version"] != 1 or checkpoint["architecture"] != "resnet18":
+    if not isinstance(checkpoint, dict) or (
+        checkpoint.get("schema_version") != 1
+        or checkpoint.get("architecture") != "resnet18"
+        or not isinstance(checkpoint.get("model_state"), dict)
+    ):
         raise ValueError("Unsupported baseline checkpoint")
     model = build_model("none")
     model.load_state_dict(checkpoint["model_state"])
