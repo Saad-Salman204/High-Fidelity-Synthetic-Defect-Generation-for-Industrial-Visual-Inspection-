@@ -1,5 +1,7 @@
 # Three classifier training arms
 
+After freezing the completed comparison, use the [test evaluation guide](classifier-evaluation.md).
+
 Use the same reviewed configuration, seed, frozen real manifest and approved
 local ResNet-18 weights for all arms. From the repository root:
 
