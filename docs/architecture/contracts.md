@@ -29,9 +29,12 @@ The #3 API is `validate_dataset(root, *, expected_paths=None, near_threshold=5) 
 
 ## Preprocessing contract
 
-Raw files remain unchanged. RGB replication after grayscale conversion; full-image bicubic resize, no random crop. Diffusion tensors: float32/selected training dtype, CHW 3×512×512, normalized [-1,1]. Classifier: 3×224×224, ImageNet weight-enum normalization; training-only horizontal/vertical flip probabilities 0.5, no color jitter. Validate these augmentations against defect semantics before freeze. Evaluation is deterministic. Cache key includes input hash and transform-config hash.
+Raw files remain unchanged. RGB replication after grayscale conversion; full-image bicubic resize, no random crop. Diffusion tensors: float32/selected training dtype, CHW 3×512×512, normalized [-1,1]. Classifier: 3×224×224, ImageNet weight-enum normalization; training-only horizontal/vertical flip probabilities 0.5, no color jitter. Validate these augmentations against defect semantics before freeze. Evaluation is deterministic. The loader decodes from source on each access. A future cache must key by source and transform hashes.
+
+Use `read_frozen_manifest` to verify the CSV hash and group isolation. `NEUManifestDataset` selects one partition and checks each source hash on access. Samples carry `image`, integer `label` and stable `image_id`. `make_loader` preserves evaluation order. The shared `preprocess_image` transform also accepts approved synthetic images. Real sample-grid review is pending.
 
 ## Adapter and synthetic manifests
+
 
 Adapter metadata JSON: `schema_version,run_id,git_commit,config_sha256,train_manifest_sha256,base_model_id,base_revision,base_weights_sha256,adapter_sha256,trainable_modules,rank,alpha,steps,seed,environment_path,license_record`.
 
