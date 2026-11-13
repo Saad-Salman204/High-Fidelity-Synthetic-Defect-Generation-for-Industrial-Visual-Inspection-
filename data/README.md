@@ -31,6 +31,54 @@ Publisher-requested citation relevant to classification: K. Song and Y. Yan (201
 
 ## Local storage
 
+### Freeze reviewed splits (#4)
+
+Real freezing is pending. Keep the source read-only and confirm dataset permission before use.
+Run the audit below first. Then obtain its canonical digest:
+
+```powershell
+python scripts/freeze_splits.py --audit artifacts/neu-audit.json --audit-digest
+```
+
+Save a peer-reviewed JSON file using the schema below. Replace the illustrative values
+with decisions for the actual audit. Record every perceptual candidate as `same` or
+`different`, including pairs involving excluded files because they can connect other images.
+Exact byte matches are always grouped. Use `source_groups` for additional confirmed
+capture siblings. Record explicit exclusions with reasons and explain any count, structure,
+or inventory findings in `inventory_note`. Fix source layout or labels through a fresh audit
+if needed. Files with proposed exclusions cannot be silently admitted.
+
+```json
+{
+  "schema_version": 1,
+  "audit_sha256": "<audit digest>",
+  "reviewer": "<peer reviewer>",
+  "inventory_note": "<resolution of inventory findings, if any>",
+  "exclusions": {},
+  "near_duplicates": [],
+  "source_groups": []
+}
+```
+
+Each `near_duplicates` entry has `paths` (the two paths from the audit) and `decision`.
+Each `source_groups` entry is an array of relative paths.
+
+```powershell
+$archiveHash = (Get-FileHash -Algorithm SHA256 "path/to/NEU-CLS.rar").Hash.ToLowerInvariant()
+python scripts/freeze_splits.py --root "path/to/extracted/NEU-CLS" --audit artifacts/neu-audit.json --review artifacts/neu-review.json --archive-sha256 $archiveHash --output artifacts/neu-split-v1
+```
+
+Use the same `--inventory` if one was supplied to the audit. The CLI re-runs #3 against
+the source and refuses a changed report. An identical rerun verifies the existing output
+byte for byte. A changed or incomplete output requires a new directory.
+
+Downstream readers use `manifest.csv` and `split-metadata.json` together. The metadata
+contains seed, ratios, audit and manifest hashes, counts and review decisions. Allocation
+works within each class, places larger groups first and uses the seed to break group-order
+ties. Indivisible groups can move the result away from 70/15/15. Each class needs at least
+three independent groups. Peer approval of the final test split is still required before
+training. Synthetic fixtures exercise the pipeline and provide no evidence about NEU itself.
+
 ### Run the CPU audit (#3)
 
 Real NEU-CLS verification is pending. Use an approved, extracted copy after resolving the terms above. Point the audit at the image root. The supported layouts are flat files such as `Cr_1.bmp` or a single level of canonical/alias class folders. Names are case-insensitive. A recognized filename prefix that disagrees with its class folder is flagged. Wrapper directories and pre-made split folders are reported for review.
