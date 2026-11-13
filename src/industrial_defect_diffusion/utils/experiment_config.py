@@ -183,6 +183,7 @@ def validate_config(config: Any) -> dict:
             "inference_steps",
             "guidance_scale",
         },
+        optional=("candidates_per_class", "negative_prompt", "precision"),
     )
     _device(generation, "generation")
     for field in (
@@ -200,6 +201,26 @@ def validate_config(config: Any) -> dict:
     ):
         raise ConfigError("generation: expected minimum <= target <= maximum")
     _number(generation["guidance_scale"], "generation.guidance_scale")
+    if "candidates_per_class" in generation:
+        counts = _mapping(
+            generation["candidates_per_class"], "candidates_per_class", set(CLASS_MAPPING)
+        )
+        for name, count in counts.items():
+            _integer(count, f"generation.candidates_per_class.{name}")
+        if (
+            not generation["target_accepted"]
+            <= sum(counts.values())
+            <= generation["maximum_candidates"]
+        ):
+            raise ConfigError(
+                "Candidate counts must total between target_accepted and maximum_candidates"
+            )
+    if not isinstance(generation.get("negative_prompt", ""), str):
+        raise ConfigError("generation.negative_prompt: expected text")
+    if generation.get("precision", "fp32") not in ("fp32", "fp16", "bf16"):
+        raise ConfigError("generation.precision: expected fp32, fp16 or bf16")
+    if generation["device"] == "cpu" and generation.get("precision", "fp32") != "fp32":
+        raise ConfigError("CPU generation requires fp32")
 
     classifier = _mapping(
         config["classification"],

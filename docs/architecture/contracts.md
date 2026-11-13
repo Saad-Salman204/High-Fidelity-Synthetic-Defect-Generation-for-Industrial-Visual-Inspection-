@@ -42,10 +42,11 @@ Synthetic JSONL: `schema_version,image_id,relative_path,sha256,class_id,class_na
 
 `parent_ids=[]` and `mask_id=null` for text-to-image; optional inpainting parents/masks must resolve exclusively to training-approved sources. `quality_status` is `pending`, `accepted` or `rejected`. All candidates remain in the ledger; training loader admits only accepted records. Class prompts are intended labels until review. Synthetic records can never have real-test membership.
 
-The #14 reader consumes an accepted-only JSONL export. Add `real_manifest_sha256`
-from the generator's frozen source manifest record to each exported row.
-The current reader supports text-to-image and rejects nonempty ancestry and masks.
-See the [classifier arm guide](../experiments/classifier-arms.md) for the exact handoff.
+The [generation CLI](../experiments/generate-candidates.md) writes pending rows
+with `real_manifest_sha256` and adapter checkpoint provenance. #12 reviews those
+rows and preserves their provenance in a separate accepted-only export for #14.
+The current reader supports text-to-image with empty ancestry and a null mask.
+See the [classifier arm guide](../experiments/classifier-arms.md) for the handoff.
 
 ## Training and evaluation artifacts
 

@@ -87,7 +87,7 @@ python -m venv .venv
 .venv\Scripts\python -m ruff format --check .
 ```
 
-On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. Consult [setup and verification status](docs/planning/setup.md), [experiment settings and run records](docs/experiments/configuration.md), and the [real-only baseline guide](docs/experiments/real-baseline.md).
+On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. See the [environment guide](docs/planning/setup.md), [experiment settings and run records](docs/experiments/configuration.md), and the [real-only baseline guide](docs/experiments/real-baseline.md). For generation, follow the [LoRA training guide](docs/experiments/lora-training.md) and [candidate generation guide](docs/experiments/generate-candidates.md). Real generation awaits the university pilot and a reviewed adapter.
 
 ## Collaboration and team
 

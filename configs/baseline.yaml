@@ -32,6 +32,15 @@ diffusion:
   precision: fp16
   epochs: null
 generation:
+  precision: fp16
+  negative_prompt: ""
+  candidates_per_class:
+    crazing: 166
+    inclusion: 166
+    patches: 166
+    pitted_surface: 166
+    rolled_in_scale: 166
+    scratches: 166
   target_accepted: 600
   minimum_accepted: 300
   maximum_candidates: 1000
