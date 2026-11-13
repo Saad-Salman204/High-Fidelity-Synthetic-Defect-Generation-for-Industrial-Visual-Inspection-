@@ -25,7 +25,7 @@ Required fields: `schema_version,image_id,relative_path,sha256,class_id,class_na
 - Mode/size record original decode properties, expected L/200/200; deviations require review, not silent resizing during audit.
 - Split metadata JSON records algorithm/version, seed 42, ratios, actual counts, source archive hash, group audit and manifest hash.
 
-Proposed API: `validate_dataset(root, mapping) -> validation_report`; `create_splits(validated_manifest, split_config) -> split_manifest`. These signatures are design contracts only.
+The #3 API is `validate_dataset(root, *, expected_paths=None, near_threshold=5) -> dict`. It applies the fixed class mapping above. Its JSON report records schema version, per-file source paths, class IDs, original SHA-256 and decode metadata where available, findings, dispositions, observed counts and inventory shortages. Counts describe discovered image candidates before exclusions. Exact groups and perceptual pairs contain member paths and pending review status. These are review inputs. Reviewers must record confirmed groups, rejected matches and exclusion decisions separately before any split is frozen. The planned `create_splits(validated_manifest, split_config)` interface belongs to #4.
 
 ## Preprocessing contract
 

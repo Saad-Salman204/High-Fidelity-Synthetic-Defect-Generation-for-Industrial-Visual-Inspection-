@@ -31,6 +31,21 @@ Publisher-requested citation relevant to classification: K. Song and Y. Yan (201
 
 ## Local storage
 
+### Run the CPU audit (#3)
+
+Real NEU-CLS verification is pending. Use an approved, extracted copy after resolving the terms above. Point the audit at the image root. The supported layouts are flat files such as `Cr_1.bmp` or a single level of canonical/alias class folders. Names are case-insensitive. A recognized filename prefix that disagrees with its class folder is flagged. Wrapper directories and pre-made split folders are reported for review.
+
+```powershell
+python -m pip install -e ".[dev,audit]"
+New-Item -ItemType Directory -Force artifacts
+python scripts/audit_dataset.py --root "path/to/extracted/NEU-CLS" --report artifacts/neu-audit.json
+python -m pytest -q
+```
+
+Use a fresh report filename outside the source directory. The audit writes JSON and prints a summary. Exit 0 means the checks found no issues, 1 means review is needed, and 2 means the audit could not complete. Supply `--inventory expected-paths.json` with a trusted JSON array of root-relative paths to identify specific missing files. Without it, class count shortages are visible but missing filenames are unknown.
+
+The audit reads single-frame BMP, PNG, JPEG and TIFF files and checks original mode `L` and size 200 × 200. It skips linked entries and refuses inputs above 8 MiB or 4 million pixels. The report distinguishes valid files, files needing review, and proposed exclusions. It never deletes or relabels source files. SHA-256 identifies identical bytes. The 64-bit difference hash compares coarse brightness patterns with a default distance of 5 bits. Similar steel textures can collide, so review each suggested match and resolve conflicts before grouping or splitting.
+
 Planned ignored layout: `data/local/raw/<archive-hash>/`, `data/local/manifests/<split-version>/`, `data/local/cache/<transform-hash>/`, `data/local/synthetic/<run-id>/`. Preserve raw data read-only. Store source URL/date/archive hash, per-file hashes, labels, grouping/exclusions and split metadata. Back up small manifests with the corresponding dataset in approved team storage.
 
 Canonical schemas are in [contracts](../docs/architecture/contracts.md). Do not commit data, masks, generated images or checkpoints. NEU-SEG requires a separate overlap/ancestry/terms review before optional use.
