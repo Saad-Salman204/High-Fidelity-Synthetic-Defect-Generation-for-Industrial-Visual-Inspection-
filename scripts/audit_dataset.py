@@ -14,6 +14,7 @@ def main() -> int:
     parser.add_argument("--report", required=True, type=Path)
     parser.add_argument("--inventory", type=Path, help="JSON array of expected relative paths")
     parser.add_argument("--near-threshold", type=int, default=5)
+    parser.add_argument("--json-errors", action="store_true", help="Write input errors as JSON")
     args = parser.parse_args()
     try:
         if args.report.resolve().is_relative_to(args.root.resolve()):
@@ -29,6 +30,9 @@ def main() -> int:
         with args.report.open("x", encoding="utf-8") as stream:
             stream.write(json.dumps(report, indent=2) + "\n")
     except (OSError, ValueError) as exc:
+        if args.json_errors:
+            print(json.dumps({"status": "error", "message": str(exc)}))
+            return 2
         parser.exit(2, f"Audit could not complete: {exc}\n")
     print(format_summary(report))
     return 0 if report["status"] == "passed" else 1
