@@ -41,9 +41,11 @@ def relative_path(value: Any, field: str) -> str:
     return value
 
 
-def _mapping(value: Any, field: str, keys: set[str]) -> dict:
-    if not isinstance(value, dict) or value.keys() != keys:
-        raise ConfigError(f"{field}: expected exactly these keys: {', '.join(sorted(keys))}")
+def _mapping(value: Any, field: str, keys: set[str], optional: tuple[str, ...] = ()) -> dict:
+    if not isinstance(value, dict) or not keys <= value.keys() <= keys.union(optional):
+        raise ConfigError(
+            f"{field}: required keys {sorted(keys)}; optional keys {sorted(optional)}"
+        )
     return value
 
 
@@ -147,8 +149,14 @@ def validate_config(config: Any) -> dict:
             "gradient_accumulation",
             "precision",
         },
+        optional=("optimizer", "checkpoint_interval", "gradient_checkpointing"),
     )
     _training(diffusion, "diffusion")
+    if diffusion.get("optimizer", "AdamW") not in ("AdamW", "Adam"):
+        raise ConfigError("diffusion.optimizer: expected AdamW or Adam")
+    _integer(diffusion.get("checkpoint_interval", 250), "diffusion.checkpoint_interval")
+    if type(diffusion.get("gradient_checkpointing", True)) is not bool:
+        raise ConfigError("diffusion.gradient_checkpointing: expected a boolean")
     _text(diffusion["model_id"], "diffusion.model_id")
     if not isinstance(diffusion["revision"], str) or not re.fullmatch(
         r"[0-9a-f]{40}",
