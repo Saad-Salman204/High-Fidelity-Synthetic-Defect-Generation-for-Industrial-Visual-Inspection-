@@ -23,6 +23,9 @@ diffusion:
   learning_rate: 0.0001
   batch_size: 1
   gradient_accumulation: 1
+  optimizer: AdamW
+  checkpoint_interval: 1
+  gradient_checkpointing: false
   max_steps: 1
   seed: 42
   device: cpu

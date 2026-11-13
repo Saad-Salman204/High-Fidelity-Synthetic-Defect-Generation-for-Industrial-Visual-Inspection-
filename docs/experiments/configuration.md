@@ -32,6 +32,9 @@ training budgets. Review proposed settings against the experiment protocol,
 real split and GPU results before marking a config `approved`. `smoke` is for
 local test inputs. Config validation does not authorize a GPU run or download.
 
+The [LoRA training guide](lora-training.md) describes the diffusion CLI,
+optional optimizer and checkpoint settings, and resume format.
+
 After a run attempt, call `make_run_record` in
 `industrial_defect_diffusion.utils.run_records` with the validated config, stage,
 actual seed, full Git commit, timezone-aware timestamps and workspace root.

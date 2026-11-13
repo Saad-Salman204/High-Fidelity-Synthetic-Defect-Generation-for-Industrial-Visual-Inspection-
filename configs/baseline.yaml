@@ -23,6 +23,9 @@ diffusion:
   learning_rate: 0.0001
   batch_size: 1
   gradient_accumulation: 4
+  optimizer: AdamW
+  checkpoint_interval: 250
+  gradient_checkpointing: true
   max_steps: 1000
   seed: 42
   device: cuda
