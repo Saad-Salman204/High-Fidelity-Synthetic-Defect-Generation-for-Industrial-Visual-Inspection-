@@ -1,5 +1,7 @@
 # Real-only ResNet-18 baseline
 
+See the [three-arm guide](classifier-arms.md) for the shared comparison command.
+
 Use the [environment guide](../planning/setup.md) to verify PyTorch and CUDA
 on the university PC. Obtain permission for NEU and peer approval of its
 frozen split before training. Start with a copy of

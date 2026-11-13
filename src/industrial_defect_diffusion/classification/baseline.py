@@ -2,6 +2,8 @@
 
 import math
 import random
+from collections import Counter, defaultdict
+from collections.abc import Callable
 from pathlib import Path
 
 import numpy as np
@@ -109,6 +111,8 @@ def fit_baseline(
     settings: dict,
     device: torch.device,
     checkpoint: Path,
+    *,
+    on_validation: Callable[[dict], None] | None = None,
 ) -> dict:
     """Train using real train/val only and save the earliest best validation checkpoint."""
     if (
@@ -136,6 +140,9 @@ def fit_baseline(
     count = 0
     exposures = 0
     unique_images = set()
+    source_counts = Counter()
+    class_counts = defaultdict(Counter)
+    source_images = defaultdict(set)
     checkpoint.touch(exist_ok=False)
     while update < steps:
         for batch in train:
@@ -153,6 +160,15 @@ def fit_baseline(
             count += len(labels)
             exposures += len(labels)
             unique_images.update(batch["image_id"])
+            for source, label, image_id in zip(
+                batch.get("source", ["real"] * len(labels)),
+                batch["label"].tolist(),
+                batch["image_id"],
+                strict=True,
+            ):
+                source_counts[source] += 1
+                class_counts[source][label] += 1
+                source_images[source].add(image_id)
             train_loss += loss.item() * len(labels)
             if update % interval == 0 or update == steps:
                 metrics = validate_epoch(model, validation, device)
@@ -163,6 +179,8 @@ def fit_baseline(
                     "next_learning_rate": scheduler.get_last_lr()[0],
                 }
                 history.append(entry)
+                if on_validation is not None:
+                    on_validation(entry)
                 train_loss, count = 0.0, 0
                 if best is None or metrics["macro_f1"] > best["validation"]["macro_f1"]:
                     best = entry
@@ -185,4 +203,14 @@ def fit_baseline(
         "history": history,
         "training_exposures": exposures,
         "unique_training_images": len(unique_images),
+        "repeated_training_exposures": exposures - len(unique_images),
+        "training_by_source": {
+            source: {
+                "exposures": total,
+                "unique_images": len(source_images[source]),
+                "repeated_exposures": total - len(source_images[source]),
+                "class_exposures": {str(i): class_counts[source][i] for i in range(NUM_CLASSES)},
+            }
+            for source, total in sorted(source_counts.items())
+        },
     }
