@@ -1,0 +1,72 @@
+# Configuration and record tests only. No model loading or training.
+schema_version: 1
+status: smoke
+split:
+  seed: 42
+  ratios:
+  - 0.7
+  - 0.15
+  - 0.15
+  group_duplicates: true
+classes:
+  crazing: 0
+  inclusion: 1
+  patches: 2
+  pitted_surface: 3
+  rolled_in_scale: 4
+  scratches: 5
+diffusion:
+  model_id: stable-diffusion-v1-5/stable-diffusion-v1-5
+  revision: 451f4fe16113bff5a5d2269ed5ad43b0592e9a14
+  lora_rank: 4
+  lora_alpha: 4
+  learning_rate: 0.0001
+  batch_size: 1
+  gradient_accumulation: 1
+  max_steps: 1
+  seed: 42
+  device: cpu
+  precision: fp32
+  epochs: null
+generation:
+  target_accepted: 6
+  minimum_accepted: 6
+  maximum_candidates: 6
+  inference_steps: 1
+  guidance_scale: 7.5
+  seed: 42
+  device: cpu
+  batch_size: 1
+classification:
+  architecture: resnet18
+  weights: none
+  seeds:
+  - 42
+  batch_size: 2
+  max_steps: 1
+  optimizer: AdamW
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler: cosine
+  validation_interval: 1
+  mixed_synthetic_fraction: 0.5
+  selection_metric: macro_f1
+  device: cpu
+  epochs: null
+  arms:
+  - real_only
+  - synthetic_only
+  - real_plus_synthetic
+paths:
+  data_root: data/local
+  artifact_root: artifacts/smoke
+  manifest: artifacts/smoke/manifest.csv
+preprocessing:
+  diffusion_resolution: 512
+  classifier_resolution: 224
+  train_flip_probability: 0.5
+  seed: 42
+evaluation:
+  seed: 42
+  device: cpu
+  batch_size: 2

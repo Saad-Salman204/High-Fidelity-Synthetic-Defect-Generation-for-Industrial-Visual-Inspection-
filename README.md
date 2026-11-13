@@ -87,7 +87,7 @@ python -m venv .venv
 .venv\Scripts\python -m ruff format --check .
 ```
 
-On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. Consult [setup and verification status](docs/planning/setup.md); no training/generation CLI exists yet. Each implementation issue must add verified execution examples when implemented.
+On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. Consult [setup and verification status](docs/planning/setup.md) and [experiment settings and run records](docs/experiments/configuration.md). Training and generation entry points remain planned.
 
 ## Collaboration and team
 
