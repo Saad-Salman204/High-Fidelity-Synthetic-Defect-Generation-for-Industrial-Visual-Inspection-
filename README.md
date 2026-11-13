@@ -1,6 +1,6 @@
 # High-Fidelity Synthetic Defect Generation for Industrial Visual Inspection
 
-**PLANNED: repository foundation only. No ML pipeline, trained models or experiment results exist yet.**
+**In development. Data tooling and the real-only classifier are under review. Real NEU experiment results are pending.**
 
 This three-week university project will investigate whether LoRA-adapted latent diffusion can produce useful industrial surface defect images. We will compare real-only, synthetic-only and real + synthetic classifier training on one held-out real test set. Improvement is a hypothesis, not a promised outcome.
 
@@ -87,7 +87,7 @@ python -m venv .venv
 .venv\Scripts\python -m ruff format --check .
 ```
 
-On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. Consult [setup and verification status](docs/planning/setup.md) and [experiment settings and run records](docs/experiments/configuration.md). Training and generation entry points remain planned.
+On Linux/macOS use `.venv/bin/python`. Installation requires package-index access. Consult [setup and verification status](docs/planning/setup.md), [experiment settings and run records](docs/experiments/configuration.md), and the [real-only baseline guide](docs/experiments/real-baseline.md).
 
 ## Collaboration and team
 
