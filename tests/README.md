@@ -4,6 +4,7 @@ From a fresh Python 3.11 environment:
 
 ```text
 python -m pip install -e ".[dev,audit]"
+python -m pip install torch==2.14.1+cpu torchvision==0.29.1+cpu --index-url https://download.pytorch.org/whl/cpu
 python -m pip check
 python scripts/check_foundation.py
 python -m ruff check .
