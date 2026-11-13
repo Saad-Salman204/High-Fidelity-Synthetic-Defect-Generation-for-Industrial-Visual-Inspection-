@@ -47,7 +47,7 @@ Recommended baseline: SD v1.5 at 512 px, one class-prompt-conditioned UNet LoRA,
 
 Proposed grouped, stratified split: 70/15/15 (nominally 1,260/270/270). Only training images may train the generator. All classifier arms share initialization policy, transforms, class balance, optimizer-update budget, validation selection and test manifest. Target 600 accepted synthetic images, subject to a 1,000-candidate compute cap; report actual counts and rejection rates.
 
-Report accuracy, macro precision/recall/F1, per-class metrics and confusion matrices. Visually review generated defects and measure exploratory KID against real validation images. The proposal leaves its quantitative quality metric unfinished; KID is a recommendation with small-sample/domain limitations. Synthetic-only describes classifier inputs: its generator still learns from real images. See the [protocol](docs/experiments/protocol.md) and empty [results template](reports/results-template.md).
+Report accuracy, macro precision/recall/F1, per-class metrics and confusion matrices. For generation quality, compare the reviewed synthetic pool with frozen real training images using exploratory KID and class grids. Synthetic-only describes classifier inputs: its generator still learns from real images. See the [protocol](docs/experiments/protocol.md), [CPU assessment workflow](docs/experiments/synthetic-quality.md), and [results template](reports/results-template.md).
 
 ## Three-week roadmap
 
