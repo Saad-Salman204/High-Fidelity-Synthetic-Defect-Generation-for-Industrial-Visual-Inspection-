@@ -89,7 +89,11 @@ def make_run_record(
     manifest = None if stage == "split" else _file_reference(root, config["paths"]["manifest"])
     diffusion = config["diffusion"]
     classifier = config["classification"]
-    if stage in ("classification", "evaluation") and config["status"] == "approved":
+    if (
+        stage in ("classification", "evaluation")
+        and config["status"] == "approved"
+        and (status == "completed" or classifier_revision is not None)
+    ):
         if not isinstance(classifier_revision, str) or not re.fullmatch(
             r"[0-9a-f]{64}",
             classifier_revision,
