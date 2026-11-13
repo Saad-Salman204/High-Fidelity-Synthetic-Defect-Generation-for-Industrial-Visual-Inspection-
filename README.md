@@ -77,7 +77,7 @@ reports/                 Results template and verification record
 
 ## Setup and planned execution
 
-Prerequisites: Python 3.11 (proposed baseline), Git and a terminal. ML dependencies, CUDA and GPU suitability will be validated in the environment issue. The foundation installs no PyTorch or model weights.
+Prerequisites: Python 3.11, Git and a terminal. The foundation installs no PyTorch or model weights. See the [environment guide](docs/planning/setup.md) for the separate CPU ML setup and pending university GPU verification.
 
 ```powershell
 python -m venv .venv

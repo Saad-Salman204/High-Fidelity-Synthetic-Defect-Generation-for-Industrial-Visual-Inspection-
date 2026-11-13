@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlparse
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-EXCLUDED = {".git", ".venv", "__pycache__", ".ruff_cache", "build", "dist"}
+EXCLUDED = {".git", ".venv", ".cache", "__pycache__", ".ruff_cache", "build", "dist"}
 
 
 def main() -> int:
