@@ -42,6 +42,11 @@ Synthetic JSONL: `schema_version,image_id,relative_path,sha256,class_id,class_na
 
 `parent_ids=[]` and `mask_id=null` for text-to-image; optional inpainting parents/masks must resolve exclusively to training-approved sources. `quality_status` is `pending`, `accepted` or `rejected`. All candidates remain in the ledger; training loader admits only accepted records. Class prompts are intended labels until review. Synthetic records can never have real-test membership.
 
+The #14 reader consumes an accepted-only JSONL export. Add `real_manifest_sha256`
+from the generator's frozen source manifest record to each exported row.
+The current reader supports text-to-image and rejects nonempty ancestry and masks.
+See the [classifier arm guide](../experiments/classifier-arms.md) for the exact handoff.
+
 ## Training and evaluation artifacts
 
 Run record follows [template](../../configs/experiment-record.yaml). Predictions CSV: `run_id,image_id,true_class,predicted_class,p0,p1,p2,p3,p4,p5`. Require exactly one row for every test ID, six finite probabilities in [0,1] summing to 1 within tolerance, consistent argmax and class mapping. Metrics JSON stores schema, counts, class order, macro metrics, per-class support, confusion counts and all input hashes. Use JSON `null` for unavailable results, never fabricated zeroes.
