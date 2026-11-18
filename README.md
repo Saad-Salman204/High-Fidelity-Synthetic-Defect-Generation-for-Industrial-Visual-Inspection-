@@ -1,10 +1,15 @@
 # High-Fidelity Synthetic Defect Generation for Industrial Visual Inspection
 
-**In development. Data tooling and the real-only classifier are under review. Real NEU experiment results are pending.**
+**CPU-tested implementation. Real NEU data verification, university GPU experiments and scientific results are pending.**
 
 This project will investigate whether LoRA-adapted latent diffusion can produce useful industrial surface defect images. We will compare real-only, synthetic-only and real + synthetic classifier training on one held-out real test set. Improvement is a hypothesis, not a promised outcome.
 
 [Documentation](docs/README.md) · [Architecture](docs/architecture/overview.md) · [Implementation plan](docs/planning/implementation-plan.md) · [Backlog](docs/planning/backlog.md) · [Roadmap](docs/planning/roadmap.md) · [Protocol](docs/experiments/protocol.md) · [Contributing](CONTRIBUTING.md)
+
+## Start here
+
+- Juniors and teammates can read the [beginner project explanation](PROJECT_GUIDE.md).
+- The person running the university experiment can follow the [step-by-step lab manual](IMPLEMENTATION.md).
 
 ## Motivation and objectives
 
