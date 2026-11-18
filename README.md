@@ -10,6 +10,7 @@ This project will investigate whether LoRA-adapted latent diffusion can produce 
 
 - Juniors and teammates can read the [beginner project explanation](PROJECT_GUIDE.md).
 - The person running the university experiment can follow the [step-by-step lab manual](IMPLEMENTATION.md).
+- For guided execution, use [the PowerShell launcher quickstart](LAB_QUICKSTART.md) and run `./run_lab.ps1`.
 
 ## Motivation and objectives
 

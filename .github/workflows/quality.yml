@@ -5,6 +5,14 @@ on:
 permissions:
   contents: read
 jobs:
+  launcher-windows:
+    runs-on: windows-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v7
+      - name: Preview lab workflow in Windows PowerShell
+        shell: powershell
+        run: .\run_lab.ps1 -DryRun -Action plan -NonInteractive
   foundation:
     runs-on: ubuntu-latest
     timeout-minutes: 8
