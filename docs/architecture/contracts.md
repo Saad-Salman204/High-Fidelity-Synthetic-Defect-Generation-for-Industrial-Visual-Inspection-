@@ -2,6 +2,8 @@
 
 All paths are POSIX-style relative to a configured data/artifact root; reject absolute paths, traversal, missing files, duplicate IDs and invalid labels. SHA256 is lowercase 64-character hex. JSON/YAML are UTF-8; CSV includes a header. Schema version changes require a migration note and affected-owner review. Artifacts are not committed by default.
 
+The lab launcher stores version-1 local session JSON containing paths and hash-bound human review receipts in ignored artifact storage. Scientific parameters remain in the existing validated experiment YAML/JSON. Config templates are proposed copies. Launcher logs record command/exit/approval events, and backups publish a completion index only after byte verification. The launcher reuses stage CLIs and their checkpoint, review and split contracts.
+
 ## Class mapping
 
 | ID | Canonical label | Source alias examples (verify archive) |

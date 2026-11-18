@@ -1,5 +1,7 @@
 # Run the project at the university lab
 
+For a menu that calls the commands below, start with [LAB_QUICKSTART.md](LAB_QUICKSTART.md) and `./run_lab.ps1`. This manual remains the detailed reference for assets, review decisions and experiment settings.
+
 **Use this file at the GPU PC.** Your juniors can start with [PROJECT_GUIDE.md](PROJECT_GUIDE.md). You can follow this guide with PowerShell, a text editor, and a browser. It includes the commands for training, review, and final testing.
 
 **Read each step before pasting its commands.** Run one block at a time. If a block contains `notepad`, paste through that line, save the file, then paste the remaining lines. If a command prints an error, stop at that step and use the help at the bottom. Paths assume you are inside the cloned repository. Replace `RUN-FOLDER` with the actual folder name printed by the trainer.
