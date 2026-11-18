@@ -91,8 +91,6 @@ On Linux/macOS use `.venv/bin/python`. Installation requires package-index acces
 
 ## Collaboration and team
 
-Muhammad Zohaib · Muhammad Saad Salman · Muhammad Hasnain. Instructor: Dr. Usman Ali.
-
 Workstreams A (data), B (generation), C (classification/evaluation) are suggestions, not assignments. GitHub usernames remain unconfirmed. Follow [CONTRIBUTING](CONTRIBUTING.md), [Definition of Done](docs/planning/definition-of-done.md) and [AGENTS.md](AGENTS.md). Keep `main` stable; use short-lived branches and one peer-reviewed PR per focused change.
 
 ## References and limitations
