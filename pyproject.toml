@@ -24,7 +24,7 @@ presentation = [
 ]
 lora = [
     "diffusers==0.43.0",
-    "transformers==5.22.2",
+    "transformers==5.24.0",
     "peft==0.21.3",
     "accelerate==1.15.0",
     "safetensors==0.8.0",
