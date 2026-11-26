@@ -103,7 +103,7 @@ def package_presentation_assets(
 
     bundled_candidates = []
     for label in sorted(CLASS_MAPPING, key=CLASS_MAPPING.__getitem__):
-        for item, source in selected_by_class[label]:
+        for sample_number, (item, source) in enumerate(selected_by_class[label], start=1):
             original = (generation_root / source["relative_path"]).resolve()
             if not original.is_relative_to(generation_root.resolve()) or not original.is_file():
                 raise ValueError(f"Missing selected demonstration image: {item['image_id']}")
@@ -118,7 +118,7 @@ def package_presentation_assets(
                 raise ValueError(
                     f"Selected demonstration image is corrupt: {item['image_id']}"
                 ) from exc
-            relative = f"{label}/{item['image_id']}.png"
+            relative = f"{label}/sample-{sample_number:02d}.png"
             _publish_once(public_root / "demo-gallery" / relative, payload)
             bundled_candidates.append(
                 {

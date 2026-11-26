@@ -7,6 +7,7 @@ import pytest
 from PIL import Image
 
 from industrial_defect_diffusion.utils.experiment_config import CLASS_MAPPING
+from presentation.backend import runtime as runtime_module
 from presentation.backend.asset_packaging import (
     FIGURE_STEMS,
     RESEARCH_FILES,
@@ -93,11 +94,37 @@ def test_packaging_is_balanced_and_records_pending_provenance(sources):
     selection = json.loads((public / "demo-gallery" / "selection.json").read_text())
     assert len(selection["candidates"]) == 12
     assert selection["human_review_status"] == "exploratory_samples_only_not_acceptance_decisions"
+    counts = {label: 0 for label in CLASS_MAPPING}
+    for row in selection["candidates"]:
+        counts[row["class_name"]] += 1
+        assert (
+            row["relative_path"]
+            == f"{row['class_name']}/sample-{counts[row['class_name']]:02d}.png"
+        )
+        assert len(row["relative_path"]) <= 40
+        image_path = public / "demo-gallery" / row["relative_path"]
+        assert image_path.is_file()
+        assert sha256(image_path.read_bytes()).hexdigest() == row["sha256"]
     provenance = json.loads((public / "asset-provenance.json").read_text())
     assert provenance["synthetic_human_review_status"] == (
         "not_manually_reviewed_or_human_approved"
     )
     assert "predictions.csv" not in provenance["files"]
+
+
+def test_runtime_resolves_compact_bundled_gallery_paths(sources, monkeypatch):
+    _package(sources)
+    _, _, _, public = sources
+    gallery_root = public / "demo-gallery"
+    monkeypatch.setattr(runtime_module, "PACKAGED_GALLERY_ROOT", gallery_root)
+    selection = json.loads((gallery_root / "selection.json").read_text())
+    row = {**selection["candidates"][0], "_bundled": True}
+
+    image_path = runtime_module.ProjectRuntime._gallery_path(row)
+
+    assert image_path == gallery_root / row["relative_path"]
+    assert image_path.is_file()
+    assert sha256(image_path.read_bytes()).hexdigest() == row["sha256"]
 
 
 def test_packaging_is_idempotent_and_refuses_to_overwrite_different_assets(sources):
