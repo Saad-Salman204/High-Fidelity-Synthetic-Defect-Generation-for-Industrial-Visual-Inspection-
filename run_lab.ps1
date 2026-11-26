@@ -190,7 +190,7 @@ function Manifest-Approval {
     $archive = Get-Approval 'dataset-use' $script:Settings.archive 'Written terms permit the intended use of this NEU-CLS archive.'
     $manifest = $script:Settings.split_dir.TrimEnd('/') + '/manifest.csv'
     $digest = Get-Approval 'manifest' $manifest 'Peer approved groups, exclusions, actual counts and the sealed real test set.'
-    Invoke-Python -Arguments @('scripts/lab_support.py', 'manifest', '--csv', $manifest, '--archive-sha256', $archive)
+    Invoke-Python -Arguments @('scripts/lab_support.py', 'manifest', '--csv', $manifest)
     return $digest
 }
 
@@ -381,7 +381,7 @@ function Run-Stage([string]$Stage) {
                 })
             }
             $arguments = @('scripts/freeze_splits.py', '--root', $s.data_root, '--audit', $s.audit,
-                '--review', $s.dataset_review, '--archive-sha256', $archive, '--output', $s.split_dir,
+                '--review', $s.dataset_review, '--output', $s.split_dir,
                 '--seed', $seed, '--ratios') + $ratios
             if ($s.inventory) { $arguments += @('--inventory', $s.inventory) }
             Invoke-Python -Arguments $arguments

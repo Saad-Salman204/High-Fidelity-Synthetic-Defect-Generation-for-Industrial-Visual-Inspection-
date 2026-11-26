@@ -73,6 +73,32 @@ def load_adapter(path: Path, parts: Components) -> None:
         raise ValueError("Checkpoint did not load every expected adapter tensor")
 
 
+def _resume_provenance_matches(saved: dict, current: dict, update: int) -> bool:
+    """Allow only extending the absolute diffusion update budget on resume."""
+    saved_config = saved.get("config")
+    current_config = current.get("config")
+    if not isinstance(saved_config, dict) or not isinstance(current_config, dict):
+        return saved == current
+    saved_diffusion = saved_config.get("diffusion")
+    current_diffusion = current_config.get("diffusion")
+    if not isinstance(saved_diffusion, dict) or not isinstance(current_diffusion, dict):
+        return saved == current
+    old_steps = saved_diffusion.get("max_steps")
+    new_steps = current_diffusion.get("max_steps")
+    if (
+        type(old_steps) is not int
+        or type(new_steps) is not int
+        or new_steps <= old_steps
+        or new_steps <= update
+    ):
+        return False
+    saved_copy = json.loads(json.dumps(saved))
+    current_copy = json.loads(json.dumps(current))
+    saved_copy["config"]["diffusion"]["max_steps"] = None
+    current_copy["config"]["diffusion"]["max_steps"] = None
+    return saved_copy == current_copy
+
+
 def resume_checkpoint(
     path: Path,
     parts: Components,
@@ -85,7 +111,9 @@ def resume_checkpoint(
     metadata = json.loads((path / "checkpoint.json").read_text(encoding="utf-8"))
     if (
         metadata.get("schema_version") != 1
-        or metadata.get("provenance") != provenance
+        or not _resume_provenance_matches(
+            metadata.get("provenance", {}), provenance, metadata.get("update", -1)
+        )
         or metadata.get("target_modules") != list(TARGETS)
         or metadata.get("prompts") != list(PROMPTS)
     ):

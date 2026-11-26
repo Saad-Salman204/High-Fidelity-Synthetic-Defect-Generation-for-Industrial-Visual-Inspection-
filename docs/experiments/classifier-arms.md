@@ -44,3 +44,11 @@ IDs and scores, loss history, manifest and checkpoint hashes, and exposure
 counts overall and by source and class. Repeated exposures count draws beyond
 the number of unique images seen. The CPU tests use synthetic fixtures.
 Real generated images and university GPU comparison results remain pending.
+
+## Automated audit-policy selection
+
+The separate automated policy workflow and its preparation command are
+documented in [automated-synthetic-selection.md](automated-synthetic-selection.md).
+It does not create `accepted` records or reviewer fields. For classifier runs,
+use `--automated-selection-manifest` and `--automated-selection-sha256`; the
+human-reviewed `--synthetic-manifest` path remains unchanged.

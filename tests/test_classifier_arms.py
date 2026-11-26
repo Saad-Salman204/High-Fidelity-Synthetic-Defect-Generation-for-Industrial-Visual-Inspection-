@@ -239,3 +239,88 @@ def test_cli_trains_all_three_with_common_validation_and_separate_checkpoints(
                 6,
             )
     assert len(checkpoints) == len(revisions) == 3
+
+
+def test_classifier_cli_consumes_automated_selection_without_human_approval(
+    comparison,
+    frozen_images,
+    tmp_path,
+):
+    config, rows, _, pool, approved = comparison
+    selected = []
+    for accepted in approved:
+        row = accepted.copy()
+        row.update(
+            quality_status="pending",
+            reviewer_id=None,
+            selection_status="automatically_selected_by_audit_policy",
+            selection_policy_id="audit-eligible-no-flags-v1",
+            near_candidate_count=1,
+        )
+        selected.append(row)
+    manifest_payload = jsonl(selected)
+    (tmp_path / "selected.jsonl").write_bytes(manifest_payload)
+    digest = sha256(manifest_payload).hexdigest()
+    (tmp_path / "selection.json").write_text(
+        json.dumps(
+            {
+                "selection_id": "audit-eligible-no-flags-v1",
+                "human_review_status": "not_manually_reviewed_or_human_approved",
+                "selection_manifest_sha256": digest,
+                "source_audit_sha256": "a" * 64,
+                "source_generation_manifest_sha256": "b" * 64,
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_path / "config.json").write_text(json.dumps(config), encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=Fixture",
+            "-c",
+            "user.email=fixture@example.invalid",
+            "commit",
+            "--allow-empty",
+            "-qm",
+            "automated selection fixture",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/train_real_baseline.py"),
+            "config.json",
+            "--seed",
+            "42",
+            "--arm",
+            "synthetic_only",
+            "--synthetic-root",
+            str(pool),
+            "--automated-selection-manifest",
+            "selected.jsonl",
+            "--automated-selection-sha256",
+            digest,
+            "--real-root",
+            str(frozen_images[0]),
+        ],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    record_path = tmp_path / json.loads(result.stdout)["record"]
+    record = json.loads(record_path.read_text(encoding="utf-8"))
+    assert record["arm"] == "synthetic_only"
+    assert record["synthetic_selection"] == {
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "a" * 64,
+        "source_generation_manifest_sha256": "b" * 64,
+        "manifest_sha256": digest,
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+    }

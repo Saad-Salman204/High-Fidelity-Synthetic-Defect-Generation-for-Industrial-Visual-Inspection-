@@ -40,7 +40,7 @@ def source():
         "adapter_checkpoint_sha256": "b" * 64,
         "adapter_checkpoint": "step-000100",
         "real_manifest_sha256": "c" * 64,
-        "dataset_archive_sha256": "d" * 64,
+        "dataset_source_sha256": "d" * 64,
     }
 
 
@@ -128,7 +128,7 @@ def test_checkpoint_provenance_and_missing_adapter(config, tmp_path, monkeypatch
     adapter.mkdir()
     metadata = {
         "manifest_sha256": "c" * 64,
-        "dataset_archive_sha256": "d" * 64,
+        "dataset_source_sha256": "d" * 64,
     }
     training_config = deepcopy(config)
     training_config["status"] = "approved"

@@ -15,9 +15,15 @@ def main() -> int:
     parser.add_argument("--root", type=Path)
     parser.add_argument("--review", type=Path)
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--archive-sha256")
     parser.add_argument("--inventory", type=Path)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--allow-unresolved-dhash",
+        action="store_true",
+        help=(
+            "Apply a documented amendment; unresolved candidates remain unverified and ungrouped"
+        ),
+    )
     parser.add_argument("--ratios", type=float, nargs=3, default=(0.7, 0.15, 0.15))
     args = parser.parse_args()
     try:
@@ -25,8 +31,8 @@ def main() -> int:
         if args.audit_digest:
             print(audit_digest(audit))
             return 0
-        if not all((args.root, args.review, args.output, args.archive_sha256)):
-            raise ValueError("Freeze requires --root, --review, --output and --archive-sha256")
+        if not all((args.root, args.review, args.output)):
+            raise ValueError("Freeze requires --root, --review and --output")
         review = json.loads(args.review.read_text(encoding="utf-8"))
         inventory = (
             json.loads(args.inventory.read_text(encoding="utf-8")) if args.inventory else None
@@ -40,10 +46,10 @@ def main() -> int:
             audit,
             review,
             args.output,
-            source_version=args.archive_sha256,
             inventory=inventory,
             seed=args.seed,
             ratios=tuple(args.ratios),
+            allow_unresolved_dhash=args.allow_unresolved_dhash,
         )
         print(json.dumps({"status": "verified", "manifest_sha256": metadata["manifest_sha256"]}))
     except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:

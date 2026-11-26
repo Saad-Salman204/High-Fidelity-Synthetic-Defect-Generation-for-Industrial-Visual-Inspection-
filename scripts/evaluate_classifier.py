@@ -23,6 +23,9 @@ def main() -> int:
     parser.add_argument("--approved-selection-sha256", required=True)
     parser.add_argument("--approved-manifest-sha256", required=True)
     parser.add_argument(
+        "--real-root", type=Path, help="External root for the frozen real dataset images"
+    )
+    parser.add_argument(
         "--output", required=True, help="New directory under configured artifact root"
     )
     args = parser.parse_args()
@@ -32,11 +35,13 @@ def main() -> int:
         output = (root / relative_path(args.output, "output")).resolve()
         artifact_root = (root / config["paths"]["artifact_root"]).resolve()
         data_root = (root / config["paths"]["data_root"]).resolve()
+        real_root = args.real_root.resolve() if args.real_root is not None else data_root
         if (
             not output.is_relative_to(root)
             or not output.is_relative_to(artifact_root)
             or output == artifact_root
             or output.is_relative_to(data_root)
+            or output.is_relative_to(real_root)
         ):
             raise ValueError(
                 "Output must be below the workspace artifact root and outside the data"
@@ -49,7 +54,13 @@ def main() -> int:
             raise ValueError("Frozen run index does not match the approved selection SHA-256")
         commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         started = datetime.now(UTC)
-        report, runs = evaluate(root, config, json.loads(selection), args.approved_manifest_sha256)
+        report, runs = evaluate(
+            root,
+            config,
+            json.loads(selection),
+            args.approved_manifest_sha256,
+            real_root=real_root,
+        )
         report.update(
             selection_file_sha256=selection_digest,
             git_commit=commit,

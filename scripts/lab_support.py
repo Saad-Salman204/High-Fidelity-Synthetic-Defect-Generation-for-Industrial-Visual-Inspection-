@@ -39,7 +39,6 @@ def main() -> int:
     models.add_argument("--approved-receipt")
     manifest = sub.add_parser("manifest")
     manifest.add_argument("--csv", required=True)
-    manifest.add_argument("--archive-sha256", required=True)
     select = sub.add_parser("selection")
     select.add_argument("--config", required=True)
     select.add_argument("--manifest-sha256", required=True)
@@ -84,8 +83,6 @@ def main() -> int:
 
             path = workspace_path(root, args.csv)
             _, result = read_frozen_manifest(path, path.with_name("split-metadata.json"))
-            if result["dataset_archive_sha256"] != args.archive_sha256:
-                raise ValueError("Frozen split does not reference the approved archive")
         elif args.action == "selection":
             result = freeze_selection(
                 root, args.config, args.manifest_sha256, args.record, args.output

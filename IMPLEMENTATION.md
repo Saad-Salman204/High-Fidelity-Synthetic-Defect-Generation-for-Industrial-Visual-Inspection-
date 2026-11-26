@@ -223,13 +223,16 @@ Paste this structure. Replace the digest and reviewer, fill an inventory note if
 4. Freeze, then inspect the counts and fingerprints. The command rereads and verifies the audit. The target is about 70% train, 15% validation and 15% test. Whole groups stay together, so exact percentages can differ.
 
 ```powershell
-$archiveHash = (Get-FileHash -Algorithm SHA256 $archive).Hash.ToLowerInvariant()
-& $py scripts/freeze_splits.py --root $real --audit $audit --review artifacts/neu-review.json --archive-sha256 $archiveHash --output $split
+& $py scripts/freeze_splits.py --root $real --audit $audit --review artifacts/neu-review.json --allow-unresolved-dhash --output $split
 Get-Content "$split/split-metadata.json"
 (Get-FileHash -Algorithm SHA256 $manifest).Hash.ToLowerInvariant()
 ```
 
-**Stop here for peer review.** Ask a teammate to check the archive hash, group decisions, actual class counts and that the test set is sealed. Save the approved **manifest CSV** hash in your lab notes. The manifest hash and archive hash are different. Before a training, generation, review or testing session, paste the approved hash when prompted:
+The freezer computes `dataset_source_sha256` from sorted relative image paths and
+the actual image-file hashes, then checks those hashes against the audit. It stores
+the audit digest separately as `audit_sha256`; no archive hash is supplied.
+
+**Stop here for peer review.** Ask a teammate to check the source fingerprint, group decisions, actual class counts and that the test set is sealed. Save the approved **manifest CSV** hash in your lab notes. The manifest hash and dataset-source fingerprint are different. Before a training, generation, review or testing session, paste the approved hash when prompted:
 
 ```powershell
 $manifestHash = (Read-Host 'Paste the peer-approved manifest.csv SHA-256').Trim().ToLowerInvariant()

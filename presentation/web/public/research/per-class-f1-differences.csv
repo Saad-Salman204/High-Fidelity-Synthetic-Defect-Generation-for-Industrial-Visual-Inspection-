@@ -1,0 +1,13 @@
+class_name,baseline_arm,candidate_arm,mean_difference,sample_sd,n
+crazing,real_only,synthetic_only,-1.0,0.0,3
+crazing,real_only,real_plus_synthetic,-0.00366300366300365,0.006344508452633227,3
+inclusion,real_only,synthetic_only,-0.5690517748006202,0.0761030789509708,3
+inclusion,real_only,real_plus_synthetic,-0.010991695163654133,0.010871623392412249,3
+patches,real_only,synthetic_only,-0.8981481481481481,0.17641258225238565,3
+patches,real_only,real_plus_synthetic,-0.0037453183520599342,0.006487081676287945,3
+pitted_surface,real_only,synthetic_only,-0.9582256675279931,0.0368688970298441,3
+pitted_surface,real_only,real_plus_synthetic,-0.00366300366300365,0.006344508452633227,3
+rolled_in_scale,real_only,synthetic_only,-0.3772472737989979,0.17827515262697768,3
+rolled_in_scale,real_only,real_plus_synthetic,0.0,0.0,3
+scratches,real_only,synthetic_only,-0.5206394513325207,0.0799963683280534,3
+scratches,real_only,real_plus_synthetic,-0.007575757575757569,0.013121597027036937,3

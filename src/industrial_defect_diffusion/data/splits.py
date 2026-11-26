@@ -6,6 +6,7 @@ import json
 import math
 import re
 from collections import Counter, defaultdict
+from datetime import date
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
@@ -43,12 +44,33 @@ def audit_digest(audit: dict) -> str:
     return _digest(audit)
 
 
+def dataset_source_digest(root: Path, audit: dict) -> str:
+    """Fingerprint sorted source paths and their verified file SHA-256 values."""
+    expected = {
+        row["relative_path"]: row["sha256"]
+        for row in audit["files"]
+        if row["sha256"] and Path(row["relative_path"]).name.lower() != "thumbs.db"
+    }
+    actual = {}
+    for relative in sorted(expected):
+        path = root / relative
+        if not path.is_file():
+            raise ValueError(f"Source file missing: {relative}")
+        digest = sha256(path.read_bytes()).hexdigest()
+        if digest != expected[relative]:
+            raise ValueError(f"Source file hash differs from audit: {relative}")
+        actual[relative] = digest
+    return _digest([[path, actual[path]] for path in sorted(actual)])
+
+
 def _require_hash(value: str, name: str) -> None:
     if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
         raise ValueError(f"{name} must be a lowercase SHA-256 digest")
 
 
-def _reviewed_groups(audit: dict, review: dict) -> tuple[list[list[dict]], dict]:
+def _reviewed_groups(
+    audit: dict, review: dict, *, allow_unresolved_dhash: bool = False
+) -> tuple[list[list[dict]], dict, list[list[str]]]:
     if audit["schema_version"] != 1 or audit["class_mapping"] != CLASSES:
         raise ValueError("Expected a version-1 NEU-CLS audit with the canonical class mapping")
     if review.get("schema_version") != 1 or review.get("audit_sha256") != audit_digest(audit):
@@ -108,7 +130,30 @@ def _reviewed_groups(audit: dict, review: dict) -> tuple[list[list[dict]], dict]
         decisions[pair] = decision
         if decision == "same":
             join(*pair)
-    for left, right in candidates - decisions.keys():
+    unresolved = candidates - decisions.keys()
+    amendment = review.get("protocol_amendment")
+    if unresolved and allow_unresolved_dhash:
+        required = {"amendment_id", "rationale", "reviewer", "date", "acknowledgment"}
+        if not isinstance(amendment, dict) or amendment.keys() != required:
+            raise ValueError(
+                "Unresolved dHash candidates require a complete protocol_amendment record"
+            )
+        if any(
+            not isinstance(amendment[key], str) or not amendment[key].strip() for key in required
+        ):
+            raise ValueError("Protocol amendment fields must be non-empty strings")
+        try:
+            date.fromisoformat(amendment["date"])
+        except ValueError as exc:
+            raise ValueError("Protocol amendment date must use ISO format YYYY-MM-DD") from exc
+        acknowledgment = amendment["acknowledgment"].lower()
+        if not all(token in acknowledgment for token in ("unverified", "dhash", "ungrouped")):
+            raise ValueError(
+                "Acknowledgment must state unresolved dHash candidates remain unverified "
+                "and ungrouped"
+            )
+    if unresolved and not allow_unresolved_dhash:
+        left, right = sorted(unresolved)[0]
         raise ValueError(f"Unresolved near-duplicate pair: {left}, {right}")
     for group in review.get("source_groups", []):
         if not isinstance(group, list) or len(group) < 2 or not set(group) <= paths:
@@ -121,7 +166,7 @@ def _reviewed_groups(audit: dict, review: dict) -> tuple[list[list[dict]], dict]
         grouped[representative(path)].append(rows[path])
     if any(len({row["class_name"] for row in group}) != 1 for group in grouped.values()):
         raise ValueError("A confirmed group has conflicting labels. Resolve them before splitting")
-    return list(grouped.values()), exclusions
+    return list(grouped.values()), exclusions, [list(pair) for pair in sorted(unresolved)]
 
 
 def validate_manifest(rows: list[dict]) -> None:
@@ -155,9 +200,10 @@ def create_splits(
     source_version: str,
     seed: int = 42,
     ratios: tuple[float, float, float] = (0.7, 0.15, 0.15),
+    allow_unresolved_dhash: bool = False,
 ) -> tuple[list[dict], dict]:
     """Allocate reviewed image groups and return manifest rows and metadata."""
-    _require_hash(source_version, "Source archive SHA-256")
+    _require_hash(source_version, "Dataset-source SHA-256")
     if type(seed) is not int or not 0 <= seed < 2**32:
         raise ValueError("Seed must be an integer from 0 to 4294967295")
     if (
@@ -166,7 +212,9 @@ def create_splits(
         or not math.isclose(sum(ratios), 1, abs_tol=1e-9)
     ):
         raise ValueError("Split ratios must be three positive numbers totaling 1")
-    groups, exclusions = _reviewed_groups(audit, review)
+    groups, exclusions, unresolved_pairs = _reviewed_groups(
+        audit, review, allow_unresolved_dhash=allow_unresolved_dhash
+    )
     manifest = []
     counts = {}
     for label in CLASSES:
@@ -205,7 +253,7 @@ def create_splits(
         "algorithm": "largest-group-first-class-deficit-v1",
         "seed": seed,
         "ratios": dict(zip(SPLITS, ratios, strict=True)),
-        "dataset_archive_sha256": source_version,
+        "dataset_source_sha256": source_version,
         "audit_sha256": audit_digest(audit),
         "review_sha256": _digest(review),
         "class_mapping": CLASSES,
@@ -215,6 +263,7 @@ def create_splits(
         "group_count": len(groups),
         "largest_group_size": max(map(len, groups)),
         "review": review,
+        "unresolved_dhash_pairs": unresolved_pairs,
         "exclusions": [
             {
                 "relative_path": row["relative_path"],
@@ -235,10 +284,11 @@ def freeze_splits(
     review: dict,
     output: Path,
     *,
-    source_version: str,
+    source_version: str | None = None,
     inventory: list[str] | None = None,
     seed: int = 42,
     ratios: tuple[float, float, float] = (0.7, 0.15, 0.15),
+    allow_unresolved_dhash: bool = False,
 ) -> dict:
     """Recheck source inputs and write a new immutable CSV and metadata pair."""
     if output.resolve().is_relative_to(root.resolve()):
@@ -250,12 +300,14 @@ def freeze_splits(
     )
     if current != audit:
         raise ValueError("Source audit changed. Re-run the audit and review the new report")
+    source_version = dataset_source_digest(root, audit)
     rows, metadata = create_splits(
         audit,
         review,
         source_version=source_version,
         seed=seed,
         ratios=ratios,
+        allow_unresolved_dhash=allow_unresolved_dhash,
     )
     buffer = io.StringIO(newline="")
     writer = csv.DictWriter(buffer, fieldnames=FIELDS, lineterminator="\n")

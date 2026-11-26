@@ -50,7 +50,7 @@ def make_run_record(
     environment: dict | None = None,
     failures: tuple[str, ...] = (),
     classifier_revision: str | None = None,
-    dataset_archive_sha256: str | None = None,
+    dataset_source_sha256: str | None = None,
     synthetic_manifest: str | None = None,
     adapter_sha256: str | None = None,
 ) -> dict:
@@ -78,7 +78,7 @@ def make_run_record(
     started_at = started_at.astimezone(UTC)
     ended_at = ended_at.astimezone(UTC)
     for field, digest in (
-        ("dataset_archive_sha256", dataset_archive_sha256),
+        ("dataset_source_sha256", dataset_source_sha256),
         ("adapter_sha256", adapter_sha256),
     ):
         if digest is not None and (
@@ -120,7 +120,7 @@ def make_run_record(
         "config_sha256": sha256(_json(config)).hexdigest(),
         "class_mapping_sha256": sha256(_json(config["classes"])).hexdigest(),
         "dataset_manifest": manifest,
-        "dataset_archive_sha256": dataset_archive_sha256,
+        "dataset_source_sha256": dataset_source_sha256,
         "synthetic_manifest": (
             _file_reference(root, synthetic_manifest) if synthetic_manifest is not None else None
         ),

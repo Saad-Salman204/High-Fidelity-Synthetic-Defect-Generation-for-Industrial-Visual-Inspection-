@@ -1,0 +1,105 @@
+{
+  "candidates": [
+    {
+      "class_id": 0,
+      "class_name": "crazing",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00006",
+      "relative_path": "crazing/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00006.png",
+      "sha256": "d94da7d69fb559d51c687749141c3f40084272ef94e19fcc0c80ccaa120fd5f8"
+    },
+    {
+      "class_id": 0,
+      "class_name": "crazing",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00022",
+      "relative_path": "crazing/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00022.png",
+      "sha256": "32b7e8a0f4ae54ad125e38d59b729e97a3eff5cfaaddcd7556e79cc2a12b31ba"
+    },
+    {
+      "class_id": 1,
+      "class_name": "inclusion",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00006",
+      "relative_path": "inclusion/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00006.png",
+      "sha256": "7d8f95d067db3b78b2cc2802945fa13efa129748b21a09487bbf76388f6822b0"
+    },
+    {
+      "class_id": 1,
+      "class_name": "inclusion",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00007",
+      "relative_path": "inclusion/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00007.png",
+      "sha256": "3f2be5abc54df063c787b96e0e34276ff24a6abffce58b9aeadfc92351d99f21"
+    },
+    {
+      "class_id": 2,
+      "class_name": "patches",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00001",
+      "relative_path": "patches/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00001.png",
+      "sha256": "acd66be3aa8226c0a2e2369f3312aa52ae5f3ef74f186a2dc855cf3bbe5aba45"
+    },
+    {
+      "class_id": 2,
+      "class_name": "patches",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00026",
+      "relative_path": "patches/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00026.png",
+      "sha256": "4e4854bcd05ac99f76b521d2c46ea1d273565e870c2d86be70a785ce827746e8"
+    },
+    {
+      "class_id": 3,
+      "class_name": "pitted_surface",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00011",
+      "relative_path": "pitted_surface/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00011.png",
+      "sha256": "9801d296337ea8918e85cddf4582836a187d599651a245a199f575d508f86a8e"
+    },
+    {
+      "class_id": 3,
+      "class_name": "pitted_surface",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00023",
+      "relative_path": "pitted_surface/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00023.png",
+      "sha256": "a0fb02c61fe2928265456a79c39b09c38adc9331f2a937dcb2a9bb53650ab19c"
+    },
+    {
+      "class_id": 4,
+      "class_name": "rolled_in_scale",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00011",
+      "relative_path": "rolled_in_scale/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00011.png",
+      "sha256": "1214ca468f79319a27472bc7db732965591d9b0eab9f61c000faac9b363fad8e"
+    },
+    {
+      "class_id": 4,
+      "class_name": "rolled_in_scale",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00017",
+      "relative_path": "rolled_in_scale/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00017.png",
+      "sha256": "33d891d08b7c774e8b883327495c288474cc0e9751a19a702dc571ac0587ce57"
+    },
+    {
+      "class_id": 5,
+      "class_name": "scratches",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00020",
+      "relative_path": "scratches/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00020.png",
+      "sha256": "b35b477a5e745022f811909addbabe7bd4a5bf6b7c184de4a835dae191b663cb"
+    },
+    {
+      "class_id": 5,
+      "class_name": "scratches",
+      "human_review_status": "sampled_for_contact_sheet_only_pending_candidate_review",
+      "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00025",
+      "relative_path": "scratches/03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00025.png",
+      "sha256": "5c3efc6986561cfcfeeccb52b383b9be3042755a9212a50dec867737e2868e11"
+    }
+  ],
+  "human_review_status": "exploratory_samples_only_not_acceptance_decisions",
+  "schema_version": 1,
+  "selection_method": "First 2 entries per class, in the seed-42 contact-sheet selection order; no accept/reject decisions were made.",
+  "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515",
+  "source_review_selection_sha256": "65ca554886494379dc3558e7a68cbba6e45ec2349119c6c797f049a4ce3be8ea"
+}

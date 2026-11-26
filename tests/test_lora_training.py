@@ -110,7 +110,7 @@ def test_resume_restores_optimizer_rng_and_batch_cursor(settings, frozen_images,
             (root / row["relative_path"]).unlink()
     dataset = NEUManifestDataset(root, rows, split="train", target="diffusion", resolution=8)
     checkpoint = tmp_path / "checkpoint"
-    provenance = {"config": settings, "manifest": "synthetic"}
+    provenance = {"config": {"diffusion": settings}, "manifest": "synthetic"}
 
     def setup():
         parts = components()
@@ -132,14 +132,28 @@ def test_resume_restores_optimizer_rng_and_batch_cursor(settings, frozen_images,
     resumed, optimizer, scaler = setup()
     with pytest.raises(ValueError, match="provenance"):
         resume_checkpoint(checkpoint, resumed, optimizer, scaler, CPU, {})
+    with pytest.raises(ValueError, match="provenance"):
+        resume_checkpoint(checkpoint, resumed, optimizer, scaler, CPU, provenance)
+    extended = {**provenance, "config": {"diffusion": {**settings, "max_steps": 3}}}
     update, epoch, next_batch = resume_checkpoint(
-        checkpoint,
-        resumed,
-        optimizer,
-        scaler,
-        CPU,
-        provenance,
+        checkpoint, resumed, optimizer, scaler, CPU, extended
     )
+    assert update == 1
+    for diffusion_changes in (
+        {"max_steps": 2},
+        {"max_steps": 1},
+        {"max_steps": 3, "learning_rate": settings["learning_rate"] * 2},
+    ):
+        rejected = {**settings, **diffusion_changes}
+        with pytest.raises(ValueError, match="provenance"):
+            resume_checkpoint(
+                checkpoint,
+                resumed,
+                optimizer,
+                scaler,
+                CPU,
+                {**provenance, "config": {"diffusion": rejected}},
+            )
     losses = []
     train_adapter(
         resumed,
@@ -160,7 +174,7 @@ def test_resume_restores_optimizer_rng_and_batch_cursor(settings, frozen_images,
     with (checkpoint / "adapter.safetensors").open("ab") as stream:
         stream.write(b"corruption")
     with pytest.raises(ValueError, match="Adapter SHA-256"):
-        resume_checkpoint(checkpoint, resumed, optimizer, scaler, CPU, provenance)
+        resume_checkpoint(checkpoint, resumed, optimizer, scaler, CPU, extended)
 
 
 def test_train_guard_and_device_errors(settings, frozen_images, monkeypatch):
@@ -185,6 +199,32 @@ def test_train_guard_and_device_errors(settings, frozen_images, monkeypatch):
         training_device("cuda", "fp16")
     with pytest.raises(ValueError, match="CPU training requires fp32"):
         training_device("auto", "fp16")
+
+
+def test_external_dataset_root_loads_only_verified_train_rows(frozen_images, tmp_path):
+    source_root, manifest, metadata = frozen_images
+    # The fixture root is outside the repository and exercises external-root loading.
+    rows, _ = read_frozen_manifest(manifest, metadata)
+    training = NEUManifestDataset(
+        source_root, rows, split="train", target="diffusion", resolution=8
+    )
+    assert training.split == "train"
+    assert all(row["split"] == "train" for row in training.rows)
+    assert len(training) == sum(row["split"] == "train" for row in rows)
+    sample = training[0]
+    assert sample["image"].shape == (3, 8, 8)
+
+
+def test_external_dataset_root_rejects_manifest_hash_mismatch(frozen_images):
+    source_root, manifest, metadata = frozen_images
+    rows, _ = read_frozen_manifest(manifest, metadata)
+    training = NEUManifestDataset(
+        source_root, rows, split="train", target="diffusion", resolution=8
+    )
+    changed = source_root / training.rows[0]["relative_path"]
+    changed.write_bytes(changed.read_bytes() + b"tamper")
+    with pytest.raises(ValueError, match="Source image changed since the audit"):
+        training[0]
 
 
 def test_nonfinite_loss_stops_before_update(settings, frozen_images, monkeypatch):

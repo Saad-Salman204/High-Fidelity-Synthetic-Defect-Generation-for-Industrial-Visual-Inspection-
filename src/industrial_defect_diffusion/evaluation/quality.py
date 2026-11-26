@@ -185,7 +185,7 @@ def assess_quality(
         "synthetic_pool": "accepted_only",
         "run_id": audit["run_id"],
         "real_manifest_sha256": details["manifest_sha256"],
-        "dataset_archive_sha256": details["dataset_archive_sha256"],
+        "dataset_source_sha256": details["dataset_source_sha256"],
         "real_audit_sha256": audit["real_audit_sha256"],
         "review": reviewed["report"],
         "extractor": extractor_metadata,

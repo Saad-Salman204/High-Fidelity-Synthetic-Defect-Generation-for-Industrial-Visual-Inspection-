@@ -13,6 +13,7 @@ import torch
 
 from industrial_defect_diffusion.classification.baseline import build_model
 from industrial_defect_diffusion.data.preprocessing import read_frozen_manifest
+from industrial_defect_diffusion.evaluation.analysis import comparative_analysis
 from industrial_defect_diffusion.evaluation.classifier import _comparison, evaluate, fingerprint
 from industrial_defect_diffusion.evaluation.metrics import classification_metrics
 from industrial_defect_diffusion.utils.experiment_config import ARMS, load_config
@@ -113,7 +114,7 @@ def comparison(tmp_path, frozen_images):
             root=tmp_path,
             artifacts=(checkpoint.relative_to(tmp_path).as_posix(),),
             classifier_revision=fingerprint(checkpoint.read_bytes()),
-            dataset_archive_sha256=details["dataset_archive_sha256"],
+            dataset_source_sha256=details["dataset_source_sha256"],
             synthetic_manifest="synthetic.jsonl" if index else None,
             metrics={
                 "updates": 1,
@@ -178,6 +179,8 @@ def test_deterministic_three_arm_evaluation_and_cli_outputs(comparison, tmp_path
         fingerprint(selected),
         "--approved-manifest-sha256",
         approved,
+        "--real-root",
+        str(tmp_path / config["paths"]["data_root"]),
         "--output",
         "artifacts/frozen-evaluation",
     ]
@@ -195,6 +198,57 @@ def test_deterministic_three_arm_evaluation_and_cli_outputs(comparison, tmp_path
     ElementTree.parse(output / "performance.svg")
     assert "Macro F1" in (output / "comparison.md").read_text(encoding="utf-8")
     assert (output / "comparison.csv").is_file()
+    assert (output / "comparative-analysis.json").is_file()
+    assert (output / "per-class-aggregates.csv").is_file()
+    assert (output / "research-report.md").is_file()
+    assert (output / "executive-summary.md").is_file()
+    assert (output / "jury-brief.md").is_file()
+    assert (output / "presentation-outline.md").is_file()
+    figures = output / "figures"
+    assert (figures / "01_experimental_design.png").is_file()
+    assert (figures / "09_per_class_f1.pdf").is_file()
+
+
+def test_comparative_analysis_reports_paired_differences_and_class_means():
+    runs = []
+    for seed in (42, 43, 44):
+        for arm_index, arm in enumerate(ARMS):
+            value = 0.5 + 0.05 * arm_index + (seed - 42) * 0.01
+            per_class = [
+                {
+                    "class_id": index,
+                    "precision": value,
+                    "recall": value - 0.02,
+                    "f1": value - 0.01,
+                }
+                for index in range(6)
+            ]
+            runs.append(
+                {
+                    "arm": arm,
+                    "seed": seed,
+                    "metrics": {
+                        "accuracy": value,
+                        "macro_precision": value,
+                        "macro_recall": value - 0.02,
+                        "macro_f1": value - 0.01,
+                        "per_class": per_class,
+                    },
+                }
+            )
+    result = comparative_analysis(runs, [42, 43, 44])
+    assert result["paired_seeds"] == [42, 43, 44]
+    mixed_f1 = next(
+        row
+        for row in result["pairwise_metric_differences"]
+        if row["baseline_arm"] == "real_only"
+        and row["candidate_arm"] == "real_plus_synthetic"
+        and row["metric"] == "macro_f1"
+    )
+    assert mixed_f1["candidate_minus_baseline"]["mean"] == pytest.approx(0.1)
+    assert mixed_f1["candidate_minus_baseline"]["sample_sd"] == pytest.approx(0)
+    assert len(result["per_class_seed_aggregates"]) == 6 * 3 * 3
+    assert "no significance test" in result["interpretation"]
 
 
 @pytest.mark.parametrize(

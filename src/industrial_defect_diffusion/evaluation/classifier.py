@@ -2,11 +2,13 @@
 
 import io
 import json
+import re
 from hashlib import file_digest, sha256
 from pathlib import Path
 from statistics import mean, stdev
 
 import torch
+from PIL import Image
 
 from ..classification.baseline import load_checkpoint, resolve_device
 from ..data.preprocessing import NEUManifestDataset, make_loader, read_frozen_manifest
@@ -64,7 +66,7 @@ def _record(root: Path, config: dict, entry: dict, metadata: dict) -> dict:
     if (
         record.get("split_manifest_sha256") != metadata["manifest_sha256"]
         or record.get("dataset_manifest", {}).get("sha256") != metadata["manifest_sha256"]
-        or record.get("dataset_archive_sha256") != metadata["dataset_archive_sha256"]
+        or record.get("dataset_source_sha256") != metadata["dataset_source_sha256"]
     ):
         raise ValueError("Run does not use the same frozen real split and archive")
     resolved = validate_config(record["resolved_config"])
@@ -95,6 +97,95 @@ def _checkpoint(root: Path, record: dict, config: dict, validation_ids: list) ->
     if len(references) != 1:
         raise ValueError("Run must identify exactly one frozen best checkpoint")
     return _verified_file(root, references[0]), model["revision"]
+
+
+def _verify_automated_synthetic_source(
+    root: Path,
+    manifest_reference: dict,
+    record: dict,
+    config: dict,
+    real_manifest_sha256: str,
+) -> dict:
+    """Check automated-selection provenance and each selected image before scoring."""
+    manifest_path = _path(root, manifest_reference["path"])
+    selection_path = manifest_path.with_name("selection.json")
+    selection = json.loads(selection_path.read_text(encoding="utf-8"))
+    provenance = record.get("synthetic_selection")
+    expected = {
+        "method": selection.get("selection_id"),
+        "source_audit_sha256": selection.get("source_audit_sha256"),
+        "source_generation_manifest_sha256": selection.get("source_generation_manifest_sha256"),
+        "manifest_sha256": manifest_reference["sha256"],
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+    }
+    if (
+        selection.get("selection_id") != "audit-eligible-no-flags-v1"
+        or selection.get("human_review_status") != expected["human_review_status"]
+        or provenance != expected
+        or selection.get("selection_manifest_sha256") != manifest_reference["sha256"]
+        or selection.get("excluded_integrity_failures")
+    ):
+        raise ValueError("Synthetic run lacks matching automated-selection provenance")
+    for field in ("source_audit_sha256", "source_generation_manifest_sha256"):
+        if not isinstance(selection.get(field), str) or not re.fullmatch(
+            r"[0-9a-f]{64}", selection[field]
+        ):
+            raise ValueError(f"Invalid automated-selection hash: {field}")
+    rows = [
+        json.loads(line)
+        for line in manifest_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if len(rows) != selection.get("selected_candidate_count") or len(rows) != len(
+        selection.get("selected_images", [])
+    ):
+        raise ValueError("Automated-selection manifest count does not match its record")
+    row_by_id = {row.get("image_id"): row for row in rows}
+    image_record_by_id = {row.get("image_id"): row for row in selection["selected_images"]}
+    if len(row_by_id) != len(rows) or row_by_id.keys() != image_record_by_id.keys():
+        raise ValueError("Automated-selection image IDs do not match the manifest")
+    counts = {label: 0 for label in config["classes"]}
+    for image_id, row in row_by_id.items():
+        selected = image_record_by_id[image_id]
+        if (
+            row.get("quality_status") != "pending"
+            or row.get("reviewer_id") is not None
+            or row.get("selection_status") != "automatically_selected_by_audit_policy"
+            or row.get("selection_policy_id") != selection["selection_id"]
+            or row.get("split") != "train"
+            or row.get("real_manifest_sha256") != real_manifest_sha256
+            or row.get("base_revision") != config["diffusion"]["revision"]
+            or row.get("class_name") not in counts
+            or config["classes"].get(row.get("class_name")) != row.get("class_id")
+            or any(
+                row.get(key) != selected.get(key)
+                for key in ("class_name", "relative_path", "sha256")
+            )
+            or row.get("near_candidate_count") != selected.get("near_candidate_count")
+        ):
+            raise ValueError(f"Invalid automated-selection candidate: {image_id}")
+        counts[row["class_name"]] += 1
+        relative_path(row.get("relative_path"), "selected synthetic image path")
+        image_path = (manifest_path.parent / row["relative_path"]).resolve()
+        if (
+            not image_path.is_relative_to(manifest_path.parent.resolve())
+            or not image_path.is_file()
+        ):
+            raise ValueError(f"Selected synthetic image is missing or outside its root: {image_id}")
+        with image_path.open("rb") as stream:
+            if file_digest(stream, "sha256").hexdigest() != row.get("sha256"):
+                raise ValueError(f"Selected synthetic image hash mismatch: {image_id}")
+        try:
+            with Image.open(image_path) as image:
+                image.verify()
+            with Image.open(image_path) as image:
+                if image.size != (row.get("width"), row.get("height")):
+                    raise ValueError(f"Selected synthetic image dimensions mismatch: {image_id}")
+        except OSError as exc:
+            raise ValueError(f"Selected synthetic image cannot be decoded: {image_id}") from exc
+    if counts != selection.get("selected_counts_by_class"):
+        raise ValueError("Automated-selection class counts do not match its record")
+    return selection
 
 
 @torch.inference_mode()
@@ -137,6 +228,7 @@ def _comparison(runs: list[dict]) -> dict:
             aggregates[arm][score] = {
                 "mean": mean(values) if values else None,
                 "sample_sd": stdev(values) if len(values) > 1 else None,
+                "n": len(values),
             }
     return {
         "paired_seeds": paired,
@@ -159,6 +251,8 @@ def evaluate(
     config: dict,
     selection: dict,
     approved_manifest_sha256: str,
+    *,
+    real_root: Path | None = None,
 ) -> tuple[dict, list[dict]]:
     """Validate the frozen inputs, score eligible runs and report missing arms."""
     validate_config(config)
@@ -202,6 +296,7 @@ def evaluate(
     synthetic_hashes = set()
     commits = set()
     initial_weights = set()
+    synthetic_selection_report = None
     for seed in config["classification"]["seeds"]:
         for arm in ARMS:
             entry = entries.get((arm, seed))
@@ -236,6 +331,19 @@ def evaluate(
                 if source is None:
                     raise ValueError("Synthetic training run lacks its source manifest")
                 _verified_file(root, source)
+                if config["status"] == "approved":
+                    candidate_selection_report = _verify_automated_synthetic_source(
+                        root,
+                        source,
+                        record,
+                        config,
+                        metadata["manifest_sha256"],
+                    )
+                    if synthetic_selection_report is not None and candidate_selection_report != (
+                        synthetic_selection_report
+                    ):
+                        raise ValueError("Synthetic runs use different automated-selection records")
+                    synthetic_selection_report = candidate_selection_report
                 synthetic_hashes.add(source["sha256"])
             checkpoint, digest = _checkpoint(root, record, config, validation_ids)
             ready.append((arm, seed, entry, record, checkpoint, digest))
@@ -245,8 +353,11 @@ def evaluate(
         )
 
     device = resolve_device(config["evaluation"]["device"])
+    image_root = (
+        real_root.resolve() if real_root is not None else _path(root, config["paths"]["data_root"])
+    )
     dataset = NEUManifestDataset(
-        _path(root, config["paths"]["data_root"]),
+        image_root,
         rows,
         split="test",
         target="classifier",
@@ -275,6 +386,7 @@ def evaluate(
             "checkpoint_sha256": digest,
             "training_record": entry,
             "training_commit": record["git_commit"],
+            "synthetic_selection": record.get("synthetic_selection"),
             "metrics": metrics,
         }
         runs.append(provenance)
@@ -284,15 +396,46 @@ def evaluate(
         or fingerprint(metadata_path.read_bytes()) != metadata_sha
     ):
         raise ValueError("Frozen split changed during evaluation")
+    split_counts = {split: 0 for split in ("train", "val", "test")}
+    class_counts = {split: {label: 0 for label in config["classes"]} for split in split_counts}
+    for row in rows:
+        split_counts[row["split"]] += 1
+        class_counts[row["split"]][row["class_name"]] += 1
+    selection_summary = None
+    if synthetic_selection_report is not None:
+        selection_summary = {
+            key: synthetic_selection_report[key]
+            for key in (
+                "selection_id",
+                "selection_method",
+                "human_review_status",
+                "source_audit_sha256",
+                "source_generation_manifest_sha256",
+                "selection_manifest_sha256",
+                "eligible_candidate_count",
+                "selected_candidate_count",
+                "selected_counts_by_class",
+                "excluded_by_eligibility_policy",
+                "excluded_integrity_failures",
+            )
+        }
+        selection_summary["near_match_selected_count"] = sum(
+            row.get("near_candidate_count", 0) > 0
+            for row in synthetic_selection_report.get("selected_images", [])
+        )
     return {
         "schema_version": 1,
         "status": "incomplete" if incomplete else "completed",
         "manifest_sha256": manifest_sha,
         "split_metadata_sha256": metadata_sha,
-        "dataset_archive_sha256": metadata["dataset_archive_sha256"],
+        "dataset_source_sha256": metadata["dataset_source_sha256"],
         "selection_sha256": config_fingerprint(selection),
         "test_membership_sha256": config_fingerprint(expected),
         "test_count": len(expected),
+        "split_counts": split_counts,
+        "class_counts_by_split": class_counts,
+        "synthetic_selection": selection_summary,
+        "initial_weights_sha256": next(iter(initial_weights), None),
         "device": str(device),
         "torch": str(torch.__version__),
         "config_sha256": config_fingerprint(config),

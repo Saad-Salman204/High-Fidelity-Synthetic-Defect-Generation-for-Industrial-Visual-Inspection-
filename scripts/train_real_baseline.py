@@ -22,7 +22,10 @@ from industrial_defect_diffusion.data.preprocessing import (
     make_loader,
     read_frozen_manifest,
 )
-from industrial_defect_diffusion.data.synthetic import ApprovedSyntheticDataset
+from industrial_defect_diffusion.data.synthetic import (
+    ApprovedSyntheticDataset,
+    AutomatedSelectionDataset,
+)
 from industrial_defect_diffusion.utils.experiment_config import ARMS, load_config
 from industrial_defect_diffusion.utils.run_records import make_run_record, write_run_record
 
@@ -55,7 +58,8 @@ def train(config: dict, args: argparse.Namespace, root: Path, arm: str) -> dict:
     paths = {key: (root / value).resolve() for key, value in config["paths"].items()}
     if any(not path.is_relative_to(root) for path in paths.values()):
         raise ValueError("Configured paths must resolve inside the workspace")
-    if paths["artifact_root"].is_relative_to(paths["data_root"]):
+    real_root = args.real_root.resolve() if args.real_root is not None else paths["data_root"]
+    if paths["artifact_root"].is_relative_to(real_root):
         raise ValueError("Artifacts must be written outside the source data directory")
     manifest = paths["manifest"]
     rows, metadata = read_frozen_manifest(manifest, manifest.with_name("split-metadata.json"))
@@ -80,23 +84,31 @@ def train(config: dict, args: argparse.Namespace, root: Path, arm: str) -> dict:
         "resolution": prep["classifier_resolution"],
         "train_flip_probability": prep["train_flip_probability"],
     }
-    validation = NEUManifestDataset(paths["data_root"], rows, split="val", **transform)
+    validation = NEUManifestDataset(real_root, rows, split="val", **transform)
     validation_loader = make_loader(validation, batch_size=settings["batch_size"], seed=args.seed)
     real = (
         None
         if arm == "synthetic_only"
         else NEUManifestDataset(
-            paths["data_root"],
+            real_root,
             rows,
             split="train",
             **transform,
         )
     )
-    synthetic = synthetic_reference = synthetic_digest = None
+    synthetic = synthetic_reference = synthetic_digest = selection_provenance = None
     if arm != "real_only":
-        if args.synthetic_root is None or args.synthetic_manifest is None:
-            raise ValueError("This arm requires --synthetic-root and --synthetic-manifest")
-        synthetic_path = args.synthetic_manifest.resolve()
+        automated = args.automated_selection_manifest is not None
+        if args.synthetic_root is None or (args.synthetic_manifest is not None) == automated:
+            raise ValueError(
+                "Supply --synthetic-root and exactly one of --synthetic-manifest or "
+                "--automated-selection-manifest"
+            )
+        synthetic_path = (
+            args.automated_selection_manifest.resolve()
+            if automated
+            else args.synthetic_manifest.resolve()
+        )
         synthetic_root = args.synthetic_root.resolve()
         if not synthetic_path.is_relative_to(root):
             raise ValueError("Synthetic manifest must be inside the workspace")
@@ -105,20 +117,41 @@ def train(config: dict, args: argparse.Namespace, root: Path, arm: str) -> dict:
         payload = synthetic_path.read_bytes()
         synthetic_reference = synthetic_path.relative_to(root).as_posix()
         synthetic_digest = sha256(payload).hexdigest()
-        if (
-            config["status"] == "approved"
-            and args.approved_synthetic_manifest_sha256 != synthetic_digest
-        ):
-            raise ValueError("Supply --approved-synthetic-manifest-sha256 after peer review")
-        synthetic = ApprovedSyntheticDataset(
-            synthetic_root,
-            payload,
-            rows,
-            metadata["manifest_sha256"],
-            base_revision=config["diffusion"]["revision"],
-            resolution=prep["classifier_resolution"],
-            flip_probability=prep["train_flip_probability"],
-        )
+        if automated:
+            if args.automated_selection_sha256 != synthetic_digest:
+                raise ValueError("Supply the exact --automated-selection-sha256 for this manifest")
+            selection_record = synthetic_path.with_name("selection.json")
+            selection_provenance = json.loads(selection_record.read_text(encoding="utf-8"))
+            if selection_provenance.get("selection_manifest_sha256") != synthetic_digest:
+                raise ValueError("Automated selection record does not match its training manifest")
+            if selection_provenance.get("human_review_status") != (
+                "not_manually_reviewed_or_human_approved"
+            ):
+                raise ValueError("Automated selection must not claim human review or approval")
+            synthetic = AutomatedSelectionDataset(
+                synthetic_root,
+                payload,
+                rows,
+                metadata["manifest_sha256"],
+                base_revision=config["diffusion"]["revision"],
+                resolution=prep["classifier_resolution"],
+                flip_probability=prep["train_flip_probability"],
+            )
+        else:
+            if (
+                config["status"] == "approved"
+                and args.approved_synthetic_manifest_sha256 != synthetic_digest
+            ):
+                raise ValueError("Supply --approved-synthetic-manifest-sha256 after peer review")
+            synthetic = ApprovedSyntheticDataset(
+                synthetic_root,
+                payload,
+                rows,
+                metadata["manifest_sha256"],
+                base_revision=config["diffusion"]["revision"],
+                resolution=prep["classifier_resolution"],
+                flip_probability=prep["train_flip_probability"],
+            )
     if arm == "real_only" and settings["max_steps"] is None:
         train_loader = make_loader(
             real,
@@ -193,7 +226,7 @@ def train(config: dict, args: argparse.Namespace, root: Path, arm: str) -> dict:
             failures=failures,
             metrics=result,
             environment=environment,
-            dataset_archive_sha256=metadata["dataset_archive_sha256"],
+            dataset_source_sha256=metadata["dataset_source_sha256"],
             classifier_revision=_digest(checkpoint) if has_checkpoint else None,
             synthetic_manifest=synthetic_reference,
             artifacts=tuple(path.relative_to(root).as_posix() for path in artifacts),
@@ -202,6 +235,16 @@ def train(config: dict, args: argparse.Namespace, root: Path, arm: str) -> dict:
         record["split_manifest_sha256"] = metadata["manifest_sha256"]
         if synthetic_reference:
             record["synthetic_manifest"]["sha256"] = synthetic_digest
+            if selection_provenance is not None:
+                record["synthetic_selection"] = {
+                    "method": selection_provenance["selection_id"],
+                    "source_audit_sha256": selection_provenance["source_audit_sha256"],
+                    "source_generation_manifest_sha256": selection_provenance[
+                        "source_generation_manifest_sha256"
+                    ],
+                    "manifest_sha256": synthetic_digest,
+                    "human_review_status": selection_provenance["human_review_status"],
+                }
         write_run_record(output / "run.json", record)
     return {"status": status, "record": (output / "run.json").relative_to(root).as_posix()}
 
@@ -217,6 +260,15 @@ def main() -> int:
     parser.add_argument("--synthetic-root", type=Path)
     parser.add_argument("--synthetic-manifest", type=Path, help="Accepted-only JSONL file")
     parser.add_argument("--approved-synthetic-manifest-sha256", help="Peer-reviewed JSONL SHA-256")
+    parser.add_argument(
+        "--automated-selection-manifest",
+        type=Path,
+        help="JSONL produced by select_synthetic_eligible.py; not human-approved",
+    )
+    parser.add_argument(
+        "--automated-selection-sha256", help="Exact hash of automated-selection JSONL"
+    )
+    parser.add_argument("--real-root", type=Path, help="External root for the frozen real dataset")
     args = parser.parse_args()
     try:
         config = load_config(args.config)
@@ -224,8 +276,12 @@ def main() -> int:
         if args.arm == "all":
             if config["classification"]["max_steps"] is None:
                 raise ValueError("Three-arm comparison requires a shared max_steps budget")
-            if args.synthetic_root is None or args.synthetic_manifest is None:
-                raise ValueError("--arm all requires --synthetic-root and --synthetic-manifest")
+            if args.synthetic_root is None or (
+                (args.synthetic_manifest is None) == (args.automated_selection_manifest is None)
+            ):
+                raise ValueError(
+                    "--arm all requires --synthetic-root and exactly one synthetic manifest"
+                )
             result = {
                 "status": "completed",
                 "runs": {arm: train(config, args, root, arm) for arm in ARMS},

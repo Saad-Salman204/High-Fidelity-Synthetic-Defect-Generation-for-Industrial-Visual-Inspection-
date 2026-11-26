@@ -1,0 +1,1100 @@
+{
+  "paired_seeds": [
+    42,
+    43,
+    44
+  ],
+  "pairwise_metric_differences": [
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "metric": "accuracy",
+      "candidate_minus_baseline": {
+        "mean": -0.6592592592592593,
+        "sample_sd": 0.07435133296253607,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.6925925925925926
+        },
+        {
+          "seed": 43,
+          "difference": -0.5740740740740741
+        },
+        {
+          "seed": 44,
+          "difference": -0.7111111111111111
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "metric": "macro_precision",
+      "candidate_minus_baseline": {
+        "mean": -0.6798379479748246,
+        "sample_sd": 0.03722923980236829,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.7168716725518165
+        },
+        {
+          "seed": 43,
+          "difference": -0.6424162257495591
+        },
+        {
+          "seed": 44,
+          "difference": -0.6802259456230979
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "metric": "macro_recall",
+      "candidate_minus_baseline": {
+        "mean": -0.6592592592592593,
+        "sample_sd": 0.07435133296253596,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.6925925925925926
+        },
+        {
+          "seed": 43,
+          "difference": -0.5740740740740742
+        },
+        {
+          "seed": 44,
+          "difference": -0.711111111111111
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "metric": "macro_f1",
+      "candidate_minus_baseline": {
+        "mean": -0.72055205260138,
+        "sample_sd": 0.07359041842069888,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.7510728674623175
+        },
+        {
+          "seed": 43,
+          "difference": -0.6366118841164214
+        },
+        {
+          "seed": 44,
+          "difference": -0.7739714062254012
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "accuracy",
+      "candidate_minus_baseline": {
+        "mean": -0.004938271604938242,
+        "sample_sd": 0.0021383343303319822,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.007407407407407418
+        },
+        {
+          "seed": 43,
+          "difference": -0.0037037037037036535
+        },
+        {
+          "seed": 44,
+          "difference": -0.0037037037037036535
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_precision",
+      "candidate_minus_baseline": {
+        "mean": -0.004779525131051547,
+        "sample_sd": 0.002002833958798293,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.007092198581560183
+        },
+        {
+          "seed": 43,
+          "difference": -0.0036231884057972286
+        },
+        {
+          "seed": 44,
+          "difference": -0.0036231884057972286
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_recall",
+      "candidate_minus_baseline": {
+        "mean": -0.004938271604938242,
+        "sample_sd": 0.0021383343303319822,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.007407407407407418
+        },
+        {
+          "seed": 43,
+          "difference": -0.0037037037037036535
+        },
+        {
+          "seed": 44,
+          "difference": -0.0037037037037036535
+        }
+      ]
+    },
+    {
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_f1",
+      "candidate_minus_baseline": {
+        "mean": -0.004939796402913162,
+        "sample_sd": 0.002140183284430991,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.007411067193675902
+        },
+        {
+          "seed": 43,
+          "difference": -0.003704161007531792
+        },
+        {
+          "seed": 44,
+          "difference": -0.003704161007531792
+        }
+      ]
+    },
+    {
+      "baseline_arm": "synthetic_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "accuracy",
+      "candidate_minus_baseline": {
+        "mean": 0.654320987654321,
+        "sample_sd": 0.07354751115361223,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.6851851851851851
+        },
+        {
+          "seed": 43,
+          "difference": 0.5703703703703704
+        },
+        {
+          "seed": 44,
+          "difference": 0.7074074074074075
+        }
+      ]
+    },
+    {
+      "baseline_arm": "synthetic_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_precision",
+      "candidate_minus_baseline": {
+        "mean": 0.6750584228437729,
+        "sample_sd": 0.035518407519549273,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.7097794739702563
+        },
+        {
+          "seed": 43,
+          "difference": 0.6387930373437618
+        },
+        {
+          "seed": 44,
+          "difference": 0.6766027572173006
+        }
+      ]
+    },
+    {
+      "baseline_arm": "synthetic_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_recall",
+      "candidate_minus_baseline": {
+        "mean": 0.654320987654321,
+        "sample_sd": 0.07354751115361223,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.6851851851851851
+        },
+        {
+          "seed": 43,
+          "difference": 0.5703703703703704
+        },
+        {
+          "seed": 44,
+          "difference": 0.7074074074074075
+        }
+      ]
+    },
+    {
+      "baseline_arm": "synthetic_only",
+      "candidate_arm": "real_plus_synthetic",
+      "metric": "macro_f1",
+      "candidate_minus_baseline": {
+        "mean": 0.7156122561984668,
+        "sample_sd": 0.07284910617440915,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.7436618002686416
+        },
+        {
+          "seed": 43,
+          "difference": 0.6329077231088895
+        },
+        {
+          "seed": 44,
+          "difference": 0.7702672452178694
+        }
+      ]
+    }
+  ],
+  "per_class_seed_aggregates": [
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9927536231884058,
+      "sample_sd": 0.012551092808470117,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9963369963369964,
+      "sample_sd": 0.006344508452633227,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.2805144406867336,
+      "sample_sd": 0.06352703154163579,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9858156028368794,
+      "sample_sd": 0.024568096561260643,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.9555555555555555,
+      "sample_sd": 0.05879447357921315,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9925925925925926,
+      "sample_sd": 0.012830005981991702,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.43094822519937986,
+      "sample_sd": 0.0761030789509708,
+      "n": 3
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9890083048363458,
+      "sample_sd": 0.010871623392412249,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.13580246913580246,
+      "sample_sd": 0.2352167763365142,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.08148148148148147,
+      "sample_sd": 0.1411300658019085,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9925925925925926,
+      "sample_sd": 0.012830005981991702,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.10185185185185186,
+      "sample_sd": 0.17641258225238565,
+      "n": 3
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9962546816479401,
+      "sample_sd": 0.006487081676287945,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.04908160192713038,
+      "sample_sd": 0.04250831380633512,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9927536231884058,
+      "sample_sd": 0.012551092808470117,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.037037037037037035,
+      "sample_sd": 0.033945005147821034,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.04177433247200689,
+      "sample_sd": 0.03686889702984408,
+      "n": 3
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9963369963369964,
+      "sample_sd": 0.006344508452633227,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.9444444444444444,
+      "sample_sd": 0.0962250448649376,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.5037037037037037,
+      "sample_sd": 0.24977356000129433,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.6227527262010021,
+      "sample_sd": 0.17827515262697768,
+      "n": 3
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "precision",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "precision",
+      "arm": "synthetic_only",
+      "mean": 0.5111293559569422,
+      "sample_sd": 0.1372752493932896,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "precision",
+      "arm": "real_plus_synthetic",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "recall",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "recall",
+      "arm": "synthetic_only",
+      "mean": 0.4666666666666667,
+      "sample_sd": 0.08012336167697755,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "recall",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9851851851851852,
+      "sample_sd": 0.02566001196398334,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "f1",
+      "arm": "real_only",
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "f1",
+      "arm": "synthetic_only",
+      "mean": 0.4793605486674794,
+      "sample_sd": 0.0799963683280534,
+      "n": 3
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "f1",
+      "arm": "real_plus_synthetic",
+      "mean": 0.9924242424242424,
+      "sample_sd": 0.013121597027036937,
+      "n": 3
+    }
+  ],
+  "per_class_f1_differences_vs_real_only": [
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -1.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -1.0
+        },
+        {
+          "seed": 43,
+          "difference": -1.0
+        },
+        {
+          "seed": 44,
+          "difference": -1.0
+        }
+      ]
+    },
+    {
+      "class_name": "crazing",
+      "class_id": 0,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": -0.00366300366300365,
+        "sample_sd": 0.006344508452633227,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.0
+        },
+        {
+          "seed": 43,
+          "difference": -0.01098901098901095
+        },
+        {
+          "seed": 44,
+          "difference": 0.0
+        }
+      ]
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -0.5690517748006202,
+        "sample_sd": 0.0761030789509708,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.5876288659793815
+        },
+        {
+          "seed": 43,
+          "difference": -0.48538011695906436
+        },
+        {
+          "seed": 44,
+          "difference": -0.6341463414634146
+        }
+      ]
+    },
+    {
+      "class_name": "inclusion",
+      "class_id": 1,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": -0.010991695163654133,
+        "sample_sd": 0.010871623392412249,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.021739130434782594
+        },
+        {
+          "seed": 43,
+          "difference": 0.0
+        },
+        {
+          "seed": 44,
+          "difference": -0.011235955056179803
+        }
+      ]
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -0.8981481481481481,
+        "sample_sd": 0.17641258225238565,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -1.0
+        },
+        {
+          "seed": 43,
+          "difference": -0.6944444444444444
+        },
+        {
+          "seed": 44,
+          "difference": -1.0
+        }
+      ]
+    },
+    {
+      "class_name": "patches",
+      "class_id": 2,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": -0.0037453183520599342,
+        "sample_sd": 0.006487081676287945,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.0
+        },
+        {
+          "seed": 43,
+          "difference": -0.011235955056179803
+        },
+        {
+          "seed": 44,
+          "difference": 0.0
+        }
+      ]
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -0.9582256675279931,
+        "sample_sd": 0.0368688970298441,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.9302325581395349
+        },
+        {
+          "seed": 43,
+          "difference": -1.0
+        },
+        {
+          "seed": 44,
+          "difference": -0.9444444444444444
+        }
+      ]
+    },
+    {
+      "class_name": "pitted_surface",
+      "class_id": 3,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": -0.00366300366300365,
+        "sample_sd": 0.006344508452633227,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.0
+        },
+        {
+          "seed": 43,
+          "difference": 0.0
+        },
+        {
+          "seed": 44,
+          "difference": -0.01098901098901095
+        }
+      ]
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -0.3772472737989979,
+        "sample_sd": 0.17827515262697768,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.3846153846153846
+        },
+        {
+          "seed": 43,
+          "difference": -0.1954022988505747
+        },
+        {
+          "seed": 44,
+          "difference": -0.5517241379310345
+        }
+      ]
+    },
+    {
+      "class_name": "rolled_in_scale",
+      "class_id": 4,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": 0.0
+        },
+        {
+          "seed": 43,
+          "difference": 0.0
+        },
+        {
+          "seed": 44,
+          "difference": 0.0
+        }
+      ]
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "synthetic_only",
+      "candidate_minus_baseline": {
+        "mean": -0.5206394513325207,
+        "sample_sd": 0.0799963683280534,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.6039603960396039
+        },
+        {
+          "seed": 43,
+          "difference": -0.4444444444444444
+        },
+        {
+          "seed": 44,
+          "difference": -0.5135135135135135
+        }
+      ]
+    },
+    {
+      "class_name": "scratches",
+      "class_id": 5,
+      "metric": "f1",
+      "baseline_arm": "real_only",
+      "candidate_arm": "real_plus_synthetic",
+      "candidate_minus_baseline": {
+        "mean": -0.007575757575757569,
+        "sample_sd": 0.013121597027036937,
+        "n": 3
+      },
+      "per_seed": [
+        {
+          "seed": 42,
+          "difference": -0.022727272727272707
+        },
+        {
+          "seed": 43,
+          "difference": 0.0
+        },
+        {
+          "seed": 44,
+          "difference": 0.0
+        }
+      ]
+    }
+  ],
+  "interpretation": "Descriptive seed differences only; no significance test was performed."
+}

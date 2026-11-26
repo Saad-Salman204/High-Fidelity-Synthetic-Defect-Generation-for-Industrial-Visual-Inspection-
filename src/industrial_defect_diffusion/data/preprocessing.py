@@ -44,7 +44,7 @@ def read_frozen_manifest(manifest: Path, metadata: Path) -> tuple[list[dict], di
             "200",
         ):
             raise ValueError(f"Invalid original image metadata: {row['relative_path']}")
-        if row["source_version"] != details.get("dataset_archive_sha256"):
+        if row["source_version"] != details.get("dataset_source_sha256"):
             raise ValueError("Manifest source version does not match split metadata")
         if any(
             not re.fullmatch(r"[0-9a-f]{64}", row[field])

@@ -4,8 +4,9 @@ Issue #16 reads the saved #14 training records after the #15 comparison has
 finished. Review the real split, training settings, and checkpoint choices
 before opening any test scores. Use the exact approved config used for
 training. Every evaluated arm must reference the same real manifest, class
-mapping, training commit and initialization. The synthetic arms must use
-the same approved synthetic export.
+mapping, training commit and initialization. Synthetic arms must use the same
+frozen synthetic manifest and match its recorded selection provenance. The
+current automated-selection pool is not a human-reviewed approved export.
 
 Write a local `selection.json` listing the records you chose before
 evaluation. Paths are relative to the repository root. Record the SHA-256
@@ -30,7 +31,7 @@ of the selection and its SHA-256. On Windows, use
 From the repository root:
 
 ```powershell
-python scripts/evaluate_classifier.py configs/approved-baseline.yaml --selection selection.json --approved-selection-sha256 "<selection-file-hash>" --approved-manifest-sha256 "<real-manifest-hash>" --output artifacts/evaluation/frozen-comparison
+python scripts/evaluate_classifier.py configs/approved-baseline.yaml --selection selection.json --approved-selection-sha256 "<selection-file-hash>" --approved-manifest-sha256 "<real-manifest-hash>" --real-root "<external-neu-cls-root>" --output artifacts/evaluation/frozen-comparison
 ```
 
 The command uses the existing classifier transform in test mode. No
@@ -41,7 +42,11 @@ output directory is an error. Exit 0 means all expected runs completed,
 artifact error. An invalid completed checkpoint stops evaluation.
 
 Each arm and seed gets predictions, per-class counts and scores, full
-metrics JSON, and an SVG confusion matrix. Rows are true classes and
+metrics JSON, and an SVG confusion matrix. Matplotlib also writes 300-DPI PNG
+and PDF figures for the study design, seed-level metrics, mean±SD comparisons,
+pooled per-arm confusion matrices, per-class F1, and paired macro-F1 differences.
+The output includes classwise and pairwise CSV/JSON analyses, a research report,
+executive summary, jury brief and suggested presentation outline. Rows are true classes and
 columns are predictions. Each cell shows its count and share of its row.
 Precision and recall use zero when the denominator is zero. The report
 flags absent true and predicted classes. Macro scores give equal weight

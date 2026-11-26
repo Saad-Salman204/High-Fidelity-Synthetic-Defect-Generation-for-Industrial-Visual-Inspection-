@@ -17,6 +17,10 @@ class ApprovedSyntheticDataset(Dataset):
     """Expose reviewed synthetic images using the classifier's training transform."""
 
     split = "train"
+    expected_quality_status = None
+    status_error = "Synthetic training manifest may contain only accepted images"
+    selection_marker = None
+    selection_policy_id = None
 
     def __init__(
         self,
@@ -62,16 +66,27 @@ class ApprovedSyntheticDataset(Dataset):
             raise ValueError("Approved synthetic pool must contain all six NEU classes")
         self.rows.sort(key=lambda row: row["image_id"])
 
-    @staticmethod
-    def _validate(row, real_manifest_sha256, base_revision, train_ids) -> None:
+    @classmethod
+    def _validate(cls, row, real_manifest_sha256, base_revision, train_ids) -> None:
         if (
             not isinstance(row, dict)
             or type(row.get("schema_version")) is not int
             or (row["schema_version"] != 1)
         ):
             raise ValueError("Expected a version-1 synthetic record")
-        if row.get("quality_status") != "accepted" or row.get("rejection_reason") is not None:
-            raise ValueError("Synthetic training manifest may contain only accepted images")
+        if cls.expected_quality_status is None:
+            valid_status = row.get("quality_status") == "accepted"
+        else:
+            valid_status = row.get("quality_status") == cls.expected_quality_status
+        if not valid_status or row.get("rejection_reason") is not None:
+            raise ValueError(cls.status_error)
+        if cls.selection_marker and (
+            row.get("selection_status") != cls.selection_marker
+            or row.get("selection_policy_id") != cls.selection_policy_id
+            or type(row.get("near_candidate_count")) is not int
+            or row["near_candidate_count"] < 0
+        ):
+            raise ValueError("Invalid automated-selection provenance")
         label = row.get("class_name")
         if (
             not isinstance(label, str)
@@ -79,7 +94,10 @@ class ApprovedSyntheticDataset(Dataset):
             or (type(row.get("class_id")) is not int or row["class_id"] != CLASS_MAPPING[label])
         ):
             raise ValueError("Invalid synthetic class label")
-        for key in ("image_id", "reviewer_id", "prompt", "run_id", "scheduler"):
+        provenance_fields = ["image_id", "prompt", "run_id", "scheduler"]
+        if cls.selection_marker is None:
+            provenance_fields.append("reviewer_id")
+        for key in provenance_fields:
             if not isinstance(row.get(key), str) or not row[key].strip():
                 raise ValueError(f"Missing synthetic provenance: {key}")
         for key in ("sha256", "adapter_sha256", "real_manifest_sha256"):
@@ -134,3 +152,16 @@ class ApprovedSyntheticDataset(Dataset):
                 flip_probability=self.flip_probability,
             )
         return {"image": tensor, "label": row["class_id"], "image_id": row["image_id"]}
+
+
+class AutomatedSelectionDataset(ApprovedSyntheticDataset):
+    """Expose candidates selected by the explicit no-blocker/no-warning policy.
+
+    These records remain ``quality_status=pending`` and carry no reviewer identity.
+    This loader is opt-in and does not relax the reviewed-export loader.
+    """
+
+    expected_quality_status = "pending"
+    status_error = "Automated selection accepts only pending, non-rejected candidates"
+    selection_marker = "automatically_selected_by_audit_policy"
+    selection_policy_id = "audit-eligible-no-flags-v1"

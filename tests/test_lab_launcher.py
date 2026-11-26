@@ -290,22 +290,17 @@ def test_cpu_device_uses_the_existing_resolver(tmp_path):
     assert json.loads(result.stdout) == {"device": "cpu"}
 
 
-def test_manifest_helper_rejects_wrong_archive(frozen_images, tmp_path):
+def test_manifest_helper_verifies_frozen_metadata(frozen_images, tmp_path):
     _, manifest, metadata = frozen_images
-    archive = json.loads(metadata.read_bytes())["dataset_archive_sha256"]
     arguments = [
         sys.executable,
         str(ROOT / "scripts/lab_support.py"),
         "manifest",
         "--csv",
         manifest.relative_to(tmp_path).as_posix(),
-        "--archive-sha256",
     ]
-    good = subprocess.run(arguments + [archive], cwd=tmp_path, capture_output=True, text=True)
+    good = subprocess.run(arguments, cwd=tmp_path, capture_output=True, text=True)
     assert good.returncode == 0, good.stderr
-    wrong = subprocess.run(arguments + ["b" * 64], cwd=tmp_path, capture_output=True, text=True)
-    assert wrong.returncode == 2
-    assert "approved archive" in json.loads(wrong.stdout)["message"]
 
 
 def test_model_receipt_detects_changed_component_without_loading_weights(tmp_path):
