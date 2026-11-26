@@ -6,7 +6,7 @@ stage: null
 arm: null
 git_commit: null
 config_sha256: null
-dataset_archive_sha256: null
+dataset_source_sha256: null
 split_manifest_sha256: null
 synthetic_manifest_sha256: null
 class_mapping_sha256: null

@@ -1,0 +1,3951 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "manifest_sha256": "b8ab71f7381cac36cd45c85381cb48807ef155c5fa3d66e4545e2eaf51fa49ef",
+  "split_metadata_sha256": "45272181398cbf82ff4bd4437c1c52bb8c6b3d45a20703665218147f6ea3e02b",
+  "dataset_source_sha256": "bf8e6820092dc973be3ed40ae20003f37bed11e6a04809549838df7cb2d7c288",
+  "selection_sha256": "2b402d2251fb3a0b1760c73c0b75d7ae8284c82435f6a57a5b7dc4f373b24983",
+  "test_membership_sha256": "858aa320a975b419968e4be2b3bf36b5da32df3d3aa622b7516f309e2efcd431",
+  "test_count": 270,
+  "split_counts": {
+    "train": 1260,
+    "val": 270,
+    "test": 270
+  },
+  "class_counts_by_split": {
+    "train": {
+      "crazing": 210,
+      "inclusion": 210,
+      "patches": 210,
+      "pitted_surface": 210,
+      "rolled_in_scale": 210,
+      "scratches": 210
+    },
+    "val": {
+      "crazing": 45,
+      "inclusion": 45,
+      "patches": 45,
+      "pitted_surface": 45,
+      "rolled_in_scale": 45,
+      "scratches": 45
+    },
+    "test": {
+      "crazing": 45,
+      "inclusion": 45,
+      "patches": 45,
+      "pitted_surface": 45,
+      "rolled_in_scale": 45,
+      "scratches": 45
+    }
+  },
+  "synthetic_selection": {
+    "selection_id": "audit-eligible-no-flags-v1",
+    "selection_method": "deterministic_full_eligible_set_sorted_by_class_id_then_image_id",
+    "human_review_status": "not_manually_reviewed_or_human_approved",
+    "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+    "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515",
+    "selection_manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+    "eligible_candidate_count": 783,
+    "selected_candidate_count": 783,
+    "selected_counts_by_class": {
+      "crazing": 148,
+      "inclusion": 96,
+      "patches": 134,
+      "pitted_surface": 132,
+      "rolled_in_scale": 146,
+      "scratches": 127
+    },
+    "excluded_by_eligibility_policy": [
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00007",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00020",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00032",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00034",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00039",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00042",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00055",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00056",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00059",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00060",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00066",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00081",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00115",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00118",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00127",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00128",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00144",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "crazing",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-0-00159",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00000",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00001",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00003",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00004",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00008",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00011",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00012",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00014",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00016",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00018",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00021",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00023",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00024",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00028",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00029",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00031",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00032",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00033",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00038",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00044",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00046",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00047",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00051",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00053",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00055",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00057",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00060",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00061",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00066",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00068",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00069",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00070",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00073",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00079",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00080",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00082",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00083",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00084",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00085",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00087",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00088",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00090",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00093",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00098",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00101",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00102",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00103",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00105",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00107",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00109",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00111",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00112",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00120",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00122",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00126",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00127",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00128",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00131",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00136",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00137",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00146",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00147",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00148",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00149",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00150",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00153",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00158",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00160",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00162",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "inclusion",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-1-00165",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00000",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00009",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00015",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00022",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00025",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00028",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00029",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00034",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00039",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00046",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00050",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00053",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00063",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00065",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00069",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00074",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00084",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00086",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00088",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00094",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00096",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00107",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00108",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00112",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00116",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00130",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00134",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00145",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00158",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00160",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00164",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "patches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-2-00165",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00001",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00010",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00011",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00013",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00017",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00039",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00050",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00051",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00052",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00055",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00078",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00079",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00080",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00082",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00087",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00089",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00094",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00095",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00096",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00098",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00101",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00109",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00112",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00114",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00129",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00130",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00131",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00140",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00144",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00147",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00152",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00154",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00155",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "pitted_surface",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-3-00165",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00006",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00016",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00020",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00026",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00039",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00042",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00045",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00055",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00062",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00077",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00114",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00128",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00132",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00134",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00137",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00146",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00149",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00151",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00160",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "rolled_in_scale",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-4-00162",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00002",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00007",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00010",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00013",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00015",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00020",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00025",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00028",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00033",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00053",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00058",
+        "warnings": []
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00060",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00063",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00066",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00067",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00070",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00073",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00076",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00077",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00078",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00079",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00080",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00086",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00089",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00091",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00097",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00101",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00103",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00108",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00122",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00123",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00128",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00130",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00131",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00135",
+        "warnings": []
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00139",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00141",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [
+          "held_out_similarity"
+        ],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00143",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      },
+      {
+        "blockers": [],
+        "class_name": "scratches",
+        "image_id": "03db674d92c61dee92492c5c7e6fada009257b957fb325ead876c5081b07faaf-5-00158",
+        "warnings": [
+          "similar_to_real_train"
+        ]
+      }
+    ],
+    "excluded_integrity_failures": [],
+    "near_match_selected_count": 186
+  },
+  "initial_weights_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "device": "cuda",
+  "torch": "2.14.1+cu132",
+  "config_sha256": "8b1cf6d22cb4e5aa8496ef481e3018ae9858d77ae477d2aee8c76a9b59e8efd1",
+  "resolved_config": {
+    "classes": {
+      "crazing": 0,
+      "inclusion": 1,
+      "patches": 2,
+      "pitted_surface": 3,
+      "rolled_in_scale": 4,
+      "scratches": 5
+    },
+    "classification": {
+      "architecture": "resnet18",
+      "arms": [
+        "real_only",
+        "synthetic_only",
+        "real_plus_synthetic"
+      ],
+      "batch_size": 24,
+      "device": "cuda",
+      "epochs": null,
+      "learning_rate": 0.001,
+      "max_steps": 1000,
+      "mixed_synthetic_fraction": 0.5,
+      "optimizer": "AdamW",
+      "scheduler": "cosine",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "selection_metric": "macro_f1",
+      "validation_interval": 100,
+      "weight_decay": 0.0001,
+      "weights": "IMAGENET1K_V1"
+    },
+    "diffusion": {
+      "batch_size": 1,
+      "checkpoint_interval": 100,
+      "device": "cuda",
+      "epochs": null,
+      "gradient_accumulation": 4,
+      "gradient_checkpointing": true,
+      "learning_rate": 0.0001,
+      "lora_alpha": 4,
+      "lora_rank": 4,
+      "max_steps": 1000,
+      "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "optimizer": "AdamW",
+      "precision": "fp16",
+      "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+      "seed": 42
+    },
+    "evaluation": {
+      "batch_size": 24,
+      "device": "cuda",
+      "seed": 42
+    },
+    "generation": {
+      "batch_size": 1,
+      "candidates_per_class": {
+        "crazing": 166,
+        "inclusion": 166,
+        "patches": 166,
+        "pitted_surface": 166,
+        "rolled_in_scale": 166,
+        "scratches": 166
+      },
+      "device": "cuda",
+      "guidance_scale": 7.5,
+      "inference_steps": 30,
+      "maximum_candidates": 1000,
+      "minimum_accepted": 300,
+      "negative_prompt": "",
+      "precision": "fp16",
+      "seed": 42,
+      "target_accepted": 600
+    },
+    "paths": {
+      "artifact_root": "artifacts",
+      "data_root": "data/local",
+      "manifest": "artifacts/neu-split-v1/manifest.csv"
+    },
+    "preprocessing": {
+      "classifier_resolution": 224,
+      "diffusion_resolution": 512,
+      "seed": 42,
+      "train_flip_probability": 0.5
+    },
+    "schema_version": 1,
+    "split": {
+      "group_duplicates": true,
+      "ratios": [
+        0.7,
+        0.15,
+        0.15
+      ],
+      "seed": 42
+    },
+    "status": "approved"
+  },
+  "runs": [
+    {
+      "arm": "real_only",
+      "seed": 42,
+      "run_id": "20261126T031354Z_real_only_42_ff584293",
+      "checkpoint_sha256": "69dd42ba5e978471794f07e880df547a882454faf207dfd3c47d299af5944d3a",
+      "training_record": {
+        "arm": "real_only",
+        "seed": 42,
+        "path": "artifacts/classification/20261126T031354Z_real_only_42_ff584293/run.json",
+        "sha256": "1f56274378ab1de15eaa050122ca6cf1015c3a8d9e20ad39b89b9d97d7d12335"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": null,
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 1.0,
+        "macro_precision": 1.0,
+        "macro_recall": 1.0,
+        "macro_f1": 1.0,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            45,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "synthetic_only",
+      "seed": 42,
+      "run_id": "20261126T031645Z_synthetic_only_42_ff584293",
+      "checkpoint_sha256": "ebdb32fa30af1652114aab08cb1fa1c03f092b692d2aeeeeeddb6feb32cf5eef",
+      "training_record": {
+        "arm": "synthetic_only",
+        "seed": 42,
+        "path": "artifacts/classification/20261126T031645Z_synthetic_only_42_ff584293/run.json",
+        "sha256": "9b8d69a4706dfb908702ba30ae56cb332b27dd08b8541a6102c6ad4396f9e663"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.3074074074074074,
+        "macro_precision": 0.28312832744818345,
+        "macro_recall": 0.3074074074074074,
+        "macro_f1": 0.2489271325376825,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": true
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 149,
+            "precision": 0.2684563758389262,
+            "recall": 0.8888888888888888,
+            "f1": 0.41237113402061853,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 4,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 41,
+            "precision": 0.07317073170731707,
+            "recall": 0.06666666666666667,
+            "f1": 0.06976744186046512,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 20,
+            "precision": 1.0,
+            "recall": 0.4444444444444444,
+            "f1": 0.6153846153846154,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 56,
+            "precision": 0.35714285714285715,
+            "recall": 0.4444444444444444,
+            "f1": 0.39603960396039606,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            12,
+            4,
+            13,
+            0,
+            16
+          ],
+          [
+            0,
+            40,
+            0,
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            5,
+            0,
+            20
+          ],
+          [
+            0,
+            42,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0,
+            13,
+            20,
+            0
+          ],
+          [
+            0,
+            23,
+            0,
+            2,
+            0,
+            20
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            0.0,
+            0.26666666666666666,
+            0.08888888888888889,
+            0.28888888888888886,
+            0.0,
+            0.35555555555555557
+          ],
+          [
+            0.0,
+            0.8888888888888888,
+            0.0,
+            0.1111111111111111,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.4444444444444444,
+            0.0,
+            0.1111111111111111,
+            0.0,
+            0.4444444444444444
+          ],
+          [
+            0.0,
+            0.9333333333333333,
+            0.0,
+            0.06666666666666667,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.26666666666666666,
+            0.0,
+            0.28888888888888886,
+            0.4444444444444444,
+            0.0
+          ],
+          [
+            0.0,
+            0.5111111111111111,
+            0.0,
+            0.044444444444444446,
+            0.0,
+            0.4444444444444444
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "real_plus_synthetic",
+      "seed": 42,
+      "run_id": "20261126T032452Z_real_plus_synthetic_42_ff584293",
+      "checkpoint_sha256": "5a26d1224af46e20c2edc1e6d8ed5f04250ef9d125c2e3ecc394bd84c0e3a3d8",
+      "training_record": {
+        "arm": "real_plus_synthetic",
+        "seed": 42,
+        "path": "artifacts/classification/20261126T032452Z_real_plus_synthetic_42_ff584293/run.json",
+        "sha256": "7c8f649df16cf84b1b560f1d46b034dd0c6b88c7fdb9b1054c2a713c93a4f56d"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.9925925925925926,
+        "macro_precision": 0.9929078014184398,
+        "macro_recall": 0.9925925925925926,
+        "macro_f1": 0.9925889328063241,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 47,
+            "precision": 0.9574468085106383,
+            "recall": 1.0,
+            "f1": 0.9782608695652174,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 43,
+            "precision": 1.0,
+            "recall": 0.9555555555555556,
+            "f1": 0.9772727272727273,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            45,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            43
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.044444444444444446,
+            0.0,
+            0.0,
+            0.0,
+            0.9555555555555556
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "real_only",
+      "seed": 43,
+      "run_id": "20261126T033108Z_real_only_43_ff584293",
+      "checkpoint_sha256": "f47117c23ca4b784bffaf709826f47c19f69ad3b428dcdc34ded3fb1ca9bddef",
+      "training_record": {
+        "arm": "real_only",
+        "seed": 43,
+        "path": "artifacts/classification/20261126T033108Z_real_only_43_ff584293/run.json",
+        "sha256": "ded6994ef46b9e24ee8889042110645cc52954848730ffd110c2bf1736e69140"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": null,
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 1.0,
+        "macro_precision": 1.0,
+        "macro_recall": 1.0,
+        "macro_f1": 1.0,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            45,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "synthetic_only",
+      "seed": 43,
+      "run_id": "20261126T033348Z_synthetic_only_43_ff584293",
+      "checkpoint_sha256": "3150e10304331e07a445ee4f3a1ada7a48ac045dc053af2fd98036b94743b6e4",
+      "training_record": {
+        "arm": "synthetic_only",
+        "seed": 43,
+        "path": "artifacts/classification/20261126T033348Z_synthetic_only_43_ff584293/run.json",
+        "sha256": "7b9519722e3c271ed2a4fa6b4b329ab2027122c6aca839c926fbc87ce7ad39ba"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.42592592592592593,
+        "macro_precision": 0.3575837742504409,
+        "macro_recall": 0.4259259259259259,
+        "macro_f1": 0.3633881158835786,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": true
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 126,
+            "precision": 0.3492063492063492,
+            "recall": 0.9777777777777777,
+            "f1": 0.5146198830409356,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 27,
+            "precision": 0.4074074074074074,
+            "recall": 0.24444444444444444,
+            "f1": 0.3055555555555556,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 30,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 42,
+            "precision": 0.8333333333333334,
+            "recall": 0.7777777777777778,
+            "f1": 0.8045977011494253,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 0.5555555555555556,
+            "recall": 0.5555555555555556,
+            "f1": 0.5555555555555556,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            3,
+            16,
+            22,
+            2,
+            2
+          ],
+          [
+            0,
+            44,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            12,
+            11,
+            2,
+            3,
+            17
+          ],
+          [
+            0,
+            43,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            6,
+            35,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0,
+            0,
+            25
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            0.0,
+            0.06666666666666667,
+            0.35555555555555557,
+            0.4888888888888889,
+            0.044444444444444446,
+            0.044444444444444446
+          ],
+          [
+            0.0,
+            0.9777777777777777,
+            0.0,
+            0.0,
+            0.0,
+            0.022222222222222223
+          ],
+          [
+            0.0,
+            0.26666666666666666,
+            0.24444444444444444,
+            0.044444444444444446,
+            0.06666666666666667,
+            0.37777777777777777
+          ],
+          [
+            0.0,
+            0.9555555555555556,
+            0.0,
+            0.0,
+            0.044444444444444446,
+            0.0
+          ],
+          [
+            0.0,
+            0.08888888888888889,
+            0.0,
+            0.13333333333333333,
+            0.7777777777777778,
+            0.0
+          ],
+          [
+            0.0,
+            0.4444444444444444,
+            0.0,
+            0.0,
+            0.0,
+            0.5555555555555556
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "real_plus_synthetic",
+      "seed": 43,
+      "run_id": "20261126T034308Z_real_plus_synthetic_43_ff584293",
+      "checkpoint_sha256": "bfa1043a535feaad20ce4ecac4391a7657e4cfedb5a49fa98484794d2bc44b0d",
+      "training_record": {
+        "arm": "real_plus_synthetic",
+        "seed": 43,
+        "path": "artifacts/classification/20261126T034308Z_real_plus_synthetic_43_ff584293/run.json",
+        "sha256": "177a8298ad962004241fa844428af6a957d68dedd996645b24677efa10647cd9"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.9962962962962963,
+        "macro_precision": 0.9963768115942028,
+        "macro_recall": 0.9962962962962963,
+        "macro_f1": 0.9962958389924682,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 46,
+            "precision": 0.9782608695652174,
+            "recall": 1.0,
+            "f1": 0.989010989010989,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 44,
+            "precision": 1.0,
+            "recall": 0.9777777777777777,
+            "f1": 0.9887640449438202,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            44,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.022222222222222223,
+            0.0,
+            0.9777777777777777,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "real_only",
+      "seed": 44,
+      "run_id": "20261126T034948Z_real_only_44_ff584293",
+      "checkpoint_sha256": "7ad9537566fcb239f98b987bc87ec7913f621300c525c407d0014f8132339fd8",
+      "training_record": {
+        "arm": "real_only",
+        "seed": 44,
+        "path": "artifacts/classification/20261126T034948Z_real_only_44_ff584293/run.json",
+        "sha256": "e307f8605a0168811e36a2d919d1ce1766819c0f06d51ea9ece00a0b23a04d90"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": null,
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 1.0,
+        "macro_precision": 1.0,
+        "macro_recall": 1.0,
+        "macro_f1": 1.0,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            45,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "synthetic_only",
+      "seed": 44,
+      "run_id": "20261126T035236Z_synthetic_only_44_ff584293",
+      "checkpoint_sha256": "b9d89d883060763c3c08c9fc76a59e43768de21d5bbc2b1b153d581c53dbb75a",
+      "training_record": {
+        "arm": "synthetic_only",
+        "seed": 44,
+        "path": "artifacts/classification/20261126T035236Z_synthetic_only_44_ff584293/run.json",
+        "sha256": "123ab0abd9d578d65fbc2ee8a261495edeee42aa27c22b1c774080560de8d899"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.28888888888888886,
+        "macro_precision": 0.31977405437690215,
+        "macro_recall": 0.2888888888888889,
+        "macro_f1": 0.22602859377459883,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": true
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 201,
+            "precision": 0.22388059701492538,
+            "recall": 1.0,
+            "f1": 0.36585365853658536,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "absent_true_class": false,
+            "absent_predicted_class": true
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 27,
+            "precision": 0.07407407407407407,
+            "recall": 0.044444444444444446,
+            "f1": 0.05555555555555555,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 13,
+            "precision": 1.0,
+            "recall": 0.28888888888888886,
+            "f1": 0.4482758620689655,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 29,
+            "precision": 0.6206896551724138,
+            "recall": 0.4,
+            "f1": 0.4864864864864865,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            16,
+            0,
+            25,
+            0,
+            4
+          ],
+          [
+            0,
+            45,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            38,
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            43,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            0,
+            27,
+            0,
+            0,
+            0,
+            18
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            0.0,
+            0.35555555555555557,
+            0.0,
+            0.5555555555555556,
+            0.0,
+            0.08888888888888889
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.8444444444444444,
+            0.0,
+            0.0,
+            0.0,
+            0.15555555555555556
+          ],
+          [
+            0.0,
+            0.9555555555555556,
+            0.0,
+            0.044444444444444446,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.7111111111111111,
+            0.0,
+            0.0,
+            0.28888888888888886,
+            0.0
+          ],
+          [
+            0.0,
+            0.6,
+            0.0,
+            0.0,
+            0.0,
+            0.4
+          ]
+        ]
+      }
+    },
+    {
+      "arm": "real_plus_synthetic",
+      "seed": 44,
+      "run_id": "20261126T040108Z_real_plus_synthetic_44_ff584293",
+      "checkpoint_sha256": "b6cb976b359094baf189f210f422ffeffe3f41bf568beabd0a98e1c38f6cc986",
+      "training_record": {
+        "arm": "real_plus_synthetic",
+        "seed": 44,
+        "path": "artifacts/classification/20261126T040108Z_real_plus_synthetic_44_ff584293/run.json",
+        "sha256": "2082fbedf3ca1c4efe2c57a744bcd2e83b015020494ebbfb7ed3d094a8bbc54f"
+      },
+      "training_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+      "synthetic_selection": {
+        "human_review_status": "not_manually_reviewed_or_human_approved",
+        "manifest_sha256": "be0bb91d1a0f6d10f84ab002d6e4039bfa6ee5eedf4826aaebac0568c185343a",
+        "method": "audit-eligible-no-flags-v1",
+        "source_audit_sha256": "07aae97c14ada7f7dd0ae8efd6db3140dd1a785fa6e3f4d6ae3429796f530147",
+        "source_generation_manifest_sha256": "681221d419977de810a016b82c1c22472866eefaf6e1dc40230096bb748dc515"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "class_order": [
+          "crazing",
+          "inclusion",
+          "patches",
+          "pitted_surface",
+          "rolled_in_scale",
+          "scratches"
+        ],
+        "test_count": 270,
+        "accuracy": 0.9962962962962963,
+        "macro_precision": 0.9963768115942028,
+        "macro_recall": 0.9962962962962963,
+        "macro_f1": 0.9962958389924682,
+        "per_class": [
+          {
+            "class_id": 0,
+            "class_name": "crazing",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 1,
+            "class_name": "inclusion",
+            "support": 45,
+            "predicted_count": 44,
+            "precision": 1.0,
+            "recall": 0.9777777777777777,
+            "f1": 0.9887640449438202,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 2,
+            "class_name": "patches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 3,
+            "class_name": "pitted_surface",
+            "support": 45,
+            "predicted_count": 46,
+            "precision": 0.9782608695652174,
+            "recall": 1.0,
+            "f1": 0.989010989010989,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 4,
+            "class_name": "rolled_in_scale",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          },
+          {
+            "class_id": 5,
+            "class_name": "scratches",
+            "support": 45,
+            "predicted_count": 45,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "absent_true_class": false,
+            "absent_predicted_class": false
+          }
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            44,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            45,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "confusion_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.9777777777777777,
+            0.0,
+            0.022222222222222223,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    }
+  ],
+  "incomplete": [],
+  "paired_seeds": [
+    42,
+    43,
+    44
+  ],
+  "aggregates": {
+    "real_only": {
+      "accuracy": {
+        "mean": 1.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "macro_precision": {
+        "mean": 1.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "macro_recall": {
+        "mean": 1.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "macro_f1": {
+        "mean": 1.0,
+        "sample_sd": 0.0,
+        "n": 3
+      }
+    },
+    "synthetic_only": {
+      "accuracy": {
+        "mean": 0.34074074074074073,
+        "sample_sd": 0.07435133296253606,
+        "n": 3
+      },
+      "macro_precision": {
+        "mean": 0.3201620520251755,
+        "sample_sd": 0.03722923980236834,
+        "n": 3
+      },
+      "macro_recall": {
+        "mean": 0.34074074074074073,
+        "sample_sd": 0.074351332962536,
+        "n": 3
+      },
+      "macro_f1": {
+        "mean": 0.27944794739862,
+        "sample_sd": 0.07359041842069892,
+        "n": 3
+      }
+    },
+    "real_plus_synthetic": {
+      "accuracy": {
+        "mean": 0.9950617283950618,
+        "sample_sd": 0.0021383343303319822,
+        "n": 3
+      },
+      "macro_precision": {
+        "mean": 0.9952204748689485,
+        "sample_sd": 0.002002833958798293,
+        "n": 3
+      },
+      "macro_recall": {
+        "mean": 0.9950617283950618,
+        "sample_sd": 0.0021383343303319822,
+        "n": 3
+      },
+      "macro_f1": {
+        "mean": 0.9950602035970868,
+        "sample_sd": 0.002140183284430991,
+        "n": 3
+      }
+    }
+  },
+  "paired_macro_f1_differences": [
+    {
+      "seed": 42,
+      "arm": "synthetic_only",
+      "minus_real_only": -0.7510728674623175
+    },
+    {
+      "seed": 42,
+      "arm": "real_plus_synthetic",
+      "minus_real_only": -0.007411067193675902
+    },
+    {
+      "seed": 43,
+      "arm": "synthetic_only",
+      "minus_real_only": -0.6366118841164214
+    },
+    {
+      "seed": 43,
+      "arm": "real_plus_synthetic",
+      "minus_real_only": -0.003704161007531792
+    },
+    {
+      "seed": 44,
+      "arm": "synthetic_only",
+      "minus_real_only": -0.7739714062254012
+    },
+    {
+      "seed": 44,
+      "arm": "real_plus_synthetic",
+      "minus_real_only": -0.003704161007531792
+    }
+  ],
+  "selection_file_sha256": "48c5c620e838eaa2e0798c36c3ebfade4796178659b5b96a9243cf551cff28fe",
+  "git_commit": "ff58429348d4f39a68c7310530f9e85d7c69714a",
+  "started_at": "2026-11-26T05:43:00.949383+00:00",
+  "ended_at": "2026-11-26T05:43:16.289176+00:00",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torchvision": "0.29.1+cu132"
+}

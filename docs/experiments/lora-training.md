@@ -1,5 +1,7 @@
 # Train the SD v1 UNet LoRA adapter
 
+Resume restores the adapter, optimizer, gradient scaler, CPU/CUDA RNG states, and batch cursor. A resume may increase only `diffusion.max_steps` above the saved budget; every other provenance/configuration field must match. The current diffusion training loop has no learning-rate scheduler, so there is no scheduler state to restore. The budget is an absolute global update target: resuming at update 100 with `max_steps: 1000` stops at update 1,000.
+
 Issue #9 implements the training path. The university GPU pilot and real NEU
 verification belong to #10. The CPU suite uses tiny randomly initialized
 Diffusers and PEFT models.

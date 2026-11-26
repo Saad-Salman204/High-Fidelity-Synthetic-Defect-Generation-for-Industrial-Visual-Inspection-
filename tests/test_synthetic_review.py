@@ -53,7 +53,7 @@ def candidates(tmp_path, frozen_images, monkeypatch):
         "adapter_checkpoint_sha256": "b" * 64,
         "adapter_checkpoint": "step-000100",
         "real_manifest_sha256": details["manifest_sha256"],
-        "dataset_archive_sha256": details["dataset_archive_sha256"],
+        "dataset_source_sha256": details["dataset_source_sha256"],
     }
     plan = candidate_plan(config, source, {})
     output = tmp_path / "candidates"

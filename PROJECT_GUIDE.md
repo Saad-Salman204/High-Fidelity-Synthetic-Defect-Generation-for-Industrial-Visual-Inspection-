@@ -88,14 +88,14 @@ A **random seed** starts a repeatable random sequence. We record seeds together 
 
 ## Chapter 4 — All 20 issues
 
-The table describes code and experiment evidence. An open or merged GitHub label alone does not establish real experimental completion. Paths in the package columns are relative to `src/industrial_defect_diffusion/`. These guides include the existing #16 evaluator implementation so it is available in a normal clone after their PR merges.
+The table below preserves the original planning-time issue snapshot; any pending markers are historical. Current implementation and experiment evidence are summarized in the README and Phase 1 research report. An open or merged GitHub label alone does not establish real experimental completion. Paths in the package columns are relative to `src/industrial_defect_diffusion/`.
 
 | Issue and prerequisites | Purpose, code and handoff | Verification and remaining work |
 | --- | --- | --- |
 | **#1 Confirm NEU provenance and permitted use** · none | `data/README.md` and licensing ledger identify the official collection and terms. Source evidence → provenance ledger. | Publisher description checked. Actual archive, hash and permitted use still need evidence. Feeds #3. |
 | **#2 Validate and lock the development and GPU environment** · none | Environment probe, package pins and Windows CPU snapshot. Installed stack → version record and tiny six-score forward pass. | CPU tested. Lab driver, CUDA, GPU memory and quota pending. Feeds #3, #6, #7. |
 | **#3 Implement dataset integrity and duplicate audit** · #1, #2 | `scripts/audit_dataset.py` calls `data/validation.py`. Images/inventory → counts, bad files, labels, exact groups and near pairs. | Tests cover corrupt images, wrong shapes, conflicts, unsafe paths and missing inventory. Real audit and human grouping feed #4. |
-| **#4 Freeze reproducible group-aware real splits** · #3 | `scripts/freeze_splits.py` and `data/splits.py`. Audit/review/archive hash → immutable CSV and metadata. | Tests cover stable allocation, groups, unresolved pairs and stale files. Real split approval feeds #5 and #8. |
+| **#4 Freeze reproducible group-aware real splits** · #3 | `scripts/freeze_splits.py` and `data/splits.py`. Audit/review and verified dataset-source fingerprint → immutable CSV and metadata. | Tests cover stable allocation, groups, unresolved pairs and stale files. Real split approval feeds #5 and #8. |
 | **#5 Implement shared grayscale preprocessing and loaders** · #4 | `data/preprocessing.py`. Image/frozen row → model-sized tensor, label and ID. | Tests check channels, ranges, deterministic evaluation, train-only transforms and hashes. Real sample inspection pending. Feeds #7, #9. |
 | **#6 Select and record the pretrained diffusion candidate** · #2 | Diffusion selection document and ADR-002 pin v1.5. Candidate research → revision and pilot gates. | Hardware, acquired weights and fidelity unverified. v1.4 is a source fallback in training; generation/review currently expect v1.5. Feeds #8, #9. |
 | **#7 Build and verify the real-only classifier baseline** · #2, #5 | Baseline script and `classification/baseline.py`. Real train/val/config/weights → best checkpoint and records. | Tests cover six logits, backward, reload and held-out protection. Actual baseline pending. Feeds #14. |

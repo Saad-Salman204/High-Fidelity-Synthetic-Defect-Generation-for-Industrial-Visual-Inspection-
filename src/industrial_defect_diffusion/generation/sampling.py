@@ -49,7 +49,7 @@ def verify_checkpoint(
         or (training["diffusion"]["model_id"], training["diffusion"]["revision"])
         != (MODEL_ID, REVISION)
         or provenance["manifest_sha256"] != manifest["manifest_sha256"]
-        or provenance["dataset_archive_sha256"] != manifest["dataset_archive_sha256"]
+        or provenance["dataset_source_sha256"] != manifest["dataset_source_sha256"]
         or not re.fullmatch(r"[0-9a-f]{40}", provenance.get("git_commit", ""))
     ):
         raise ValueError("Checkpoint training provenance is incompatible with the approved inputs")
@@ -68,7 +68,7 @@ def verify_checkpoint(
         "adapter_checkpoint_sha256": approved_metadata_hash,
         "adapter_checkpoint": f"step-{checkpoint['update']:06d}",
         "real_manifest_sha256": manifest["manifest_sha256"],
-        "dataset_archive_sha256": manifest["dataset_archive_sha256"],
+        "dataset_source_sha256": manifest["dataset_source_sha256"],
         "base_files": provenance["base_files"],
         "variant": variant,
         "training_commit": provenance["git_commit"],

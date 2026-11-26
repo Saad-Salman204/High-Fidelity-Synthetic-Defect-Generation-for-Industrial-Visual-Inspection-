@@ -8,6 +8,7 @@ from PIL import Image
 from industrial_defect_diffusion.data.splits import (
     audit_digest,
     create_splits,
+    dataset_source_digest,
     freeze_splits,
     validate_manifest,
 )
@@ -67,6 +68,28 @@ def test_unresolved_pair_and_too_few_groups(reviewed):
     _, audit, review = reviewed
     with pytest.raises(ValueError, match="Unresolved near-duplicate"):
         create_splits(audit, {**review, "near_duplicates": []}, source_version="a" * 64)
+    amended = {
+        **review,
+        "near_duplicates": [],
+        "protocol_amendment": {
+            "amendment_id": "AMEND-1",
+            "rationale": "Candidates cannot be conclusively adjudicated",
+            "reviewer": "Reviewer",
+            "date": "2026-11-25",
+            "acknowledgment": "Unresolved dHash candidates remain unverified and ungrouped.",
+        },
+    }
+    rows, metadata = create_splits(
+        audit, amended, source_version="a" * 64, allow_unresolved_dhash=True
+    )
+    assert metadata["unresolved_dhash_pairs"]
+    with pytest.raises(ValueError, match="complete protocol_amendment"):
+        create_splits(
+            audit,
+            {**amended, "protocol_amendment": {}},
+            source_version="a" * 64,
+            allow_unresolved_dhash=True,
+        )
     review["exclusions"] = {
         row["relative_path"]: "Synthetic exclusion"
         for row in audit["files"]
@@ -101,3 +124,33 @@ def test_freeze_reuse_and_stale_inputs(reviewed, tmp_path):
     (root / "crazing_1.bmp").unlink()
     with pytest.raises(ValueError, match="Source audit changed"):
         freeze_splits(root, audit, review, output, **kwargs)
+
+
+def test_source_fingerprint_is_deterministic_and_uses_actual_files(reviewed):
+    root, audit, _ = reviewed
+    first = dataset_source_digest(root, audit)
+    assert first == dataset_source_digest(root, audit)
+    (root / "Thumbs.db").write_bytes(b"windows metadata")
+    assert first == dataset_source_digest(root, audit)
+    image = root / "crazing_1.bmp"
+    image.write_bytes(image.read_bytes() + b"changed")
+    with pytest.raises(ValueError, match="differs from audit"):
+        dataset_source_digest(root, audit)
+
+
+def test_source_fingerprint_rejects_audit_hash_mismatch(reviewed):
+    root, audit, _ = reviewed
+    altered = {**audit, "files": [dict(row) for row in audit["files"]]}
+    altered["files"][0]["sha256"] = "0" * 64
+    with pytest.raises(ValueError, match="differs from audit"):
+        dataset_source_digest(root, altered)
+
+
+def test_frozen_metadata_uses_source_fingerprint_and_separate_audit_digest(reviewed, tmp_path):
+    root, audit, review = reviewed
+    fingerprint = dataset_source_digest(root, audit)
+    output = tmp_path / "freeze"
+    metadata = freeze_splits(root, audit, review, output)
+    assert metadata["dataset_source_sha256"] == fingerprint
+    assert metadata["audit_sha256"] == audit_digest(audit)
+    assert "dataset_archive_sha256" not in metadata

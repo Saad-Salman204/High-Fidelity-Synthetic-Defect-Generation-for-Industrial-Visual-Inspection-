@@ -64,9 +64,14 @@ Each `near_duplicates` entry has `paths` (the two paths from the audit) and `dec
 Each `source_groups` entry is an array of relative paths.
 
 ```powershell
-$archiveHash = (Get-FileHash -Algorithm SHA256 "path/to/NEU-CLS.rar").Hash.ToLowerInvariant()
-python scripts/freeze_splits.py --root "path/to/extracted/NEU-CLS" --audit artifacts/neu-audit.json --review artifacts/neu-review.json --archive-sha256 $archiveHash --output artifacts/neu-split-v1
+python scripts/freeze_splits.py --root "path/to/extracted/NEU-CLS" --audit artifacts/neu-audit.json --review artifacts/neu-review.json --allow-unresolved-dhash --output artifacts/neu-split-v1
 ```
+
+The freezer computes `dataset_source_sha256` from sorted relative image paths and
+actual file SHA-256 values and verifies them against the audit. The audit digest is
+stored separately; do not pass an archive hash to the freezer. The opt-in flag is
+appropriate only when the review record contains the documented amendment and
+explicitly preserves unresolved dHash candidates as unverified and ungrouped.
 
 Use the same `--inventory` if one was supplied to the audit. The CLI re-runs #3 against
 the source and refuses a changed report. An identical rerun verifies the existing output
@@ -94,6 +99,6 @@ Use a fresh report filename outside the source directory. The audit writes JSON 
 
 The audit reads single-frame BMP, PNG, JPEG and TIFF files and checks original mode `L` and size 200 × 200. It skips linked entries and refuses inputs above 8 MiB or 4 million pixels. The report distinguishes valid files, files needing review, and proposed exclusions. It never deletes or relabels source files. SHA-256 identifies identical bytes. The 64-bit difference hash compares coarse brightness patterns with a default distance of 5 bits. Similar steel textures can collide, so review each suggested match and resolve conflicts before grouping or splitting.
 
-Planned ignored layout: `data/local/raw/<archive-hash>/`, `data/local/manifests/<split-version>/`, `data/local/cache/<transform-hash>/`, `data/local/synthetic/<run-id>/`. Preserve raw data read-only. Store source URL/date/archive hash, per-file hashes, labels, grouping/exclusions and split metadata. Back up small manifests with the corresponding dataset in approved team storage.
+Planned ignored layout: `data/local/raw/<source-fingerprint>/`, `data/local/manifests/<split-version>/`, `data/local/cache/<transform-hash>/`, `data/local/synthetic/<run-id>/`. Preserve raw data read-only. Store source URL/date, an archive hash only when the original archive is available, the derived source fingerprint, per-file hashes, labels, grouping/exclusions and split metadata. Back up small manifests with the corresponding dataset in approved team storage.
 
 Canonical schemas are in [contracts](../docs/architecture/contracts.md). Do not commit data, masks, generated images or checkpoints. NEU-SEG requires a separate overlap/ancestry/terms review before optional use.

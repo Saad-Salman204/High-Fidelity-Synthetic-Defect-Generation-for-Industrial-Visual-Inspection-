@@ -1,5 +1,8 @@
 .venv/
 venv/
+node_modules/
+**/node_modules/
+presentation/web/dist/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -37,3 +40,7 @@ mlruns/
 .DS_Store
 Thumbs.db
 .tmp*
+
+# Local model and dataset files
+/models/
+/data/local/

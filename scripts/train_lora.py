@@ -46,10 +46,18 @@ def run(config: dict, args: argparse.Namespace, root: Path) -> Path:
     if (settings["model_id"], settings["revision"]) not in SUPPORTED_MODELS:
         raise ValueError("Use a pinned SD v1 model from the issue #6 decision")
     paths = {name: (root / value).resolve() for name, value in config["paths"].items()}
-    if any(not path.is_relative_to(root) for path in paths.values()):
+    if any(not path.is_relative_to(root) for name, path in paths.items() if name != "data_root"):
         raise ValueError("Configured paths must resolve inside the workspace")
+    configured_data_root = paths["data_root"]
+    data_root = (
+        args.dataset_root.resolve() if args.dataset_root is not None else configured_data_root
+    )
+    if not data_root.is_dir():
+        raise NotADirectoryError(data_root)
+    if args.dataset_root is None and not data_root.is_relative_to(root):
+        raise ValueError("Configured data_root must resolve inside the workspace")
     model_root = args.model_dir.resolve()
-    if paths["artifact_root"].is_relative_to(paths["data_root"]) or (
+    if paths["artifact_root"].is_relative_to(data_root) or (
         paths["artifact_root"].is_relative_to(model_root)
     ):
         raise ValueError("Artifacts must be outside the dataset and model directories")
@@ -85,9 +93,10 @@ def run(config: dict, args: argparse.Namespace, root: Path) -> Path:
         "config": config,
         "git_commit": commit,
         "manifest_sha256": meta["manifest_sha256"],
-        "dataset_archive_sha256": meta["dataset_archive_sha256"],
+        "dataset_source_sha256": meta["dataset_source_sha256"],
         "base_files": files,
         "variant": args.variant,
+        "dataset_root": str(data_root),
         "environment": environment,
     }
     if args.resume is not None:
@@ -101,7 +110,7 @@ def run(config: dict, args: argparse.Namespace, root: Path) -> Path:
 
     prep = config["preprocessing"]
     dataset = NEUManifestDataset(
-        paths["data_root"],
+        data_root,
         rows,
         split="train",
         target="diffusion",
@@ -173,7 +182,7 @@ def run(config: dict, args: argparse.Namespace, root: Path) -> Path:
             artifacts=tuple(path.relative_to(root).as_posix() for path in artifacts),
             environment={**environment, "base_files": files, "variant": args.variant},
             adapter_sha256=file_sha256(adapter) if adapter else None,
-            dataset_archive_sha256=meta["dataset_archive_sha256"],
+            dataset_source_sha256=meta["dataset_source_sha256"],
         )
         # Use the fingerprint of the manifest actually read at startup.
         record["dataset_manifest"]["sha256"] = meta["manifest_sha256"]
@@ -188,6 +197,13 @@ def main() -> int:
     parser.add_argument("config", type=Path)
     parser.add_argument("--model-dir", type=Path, required=True, help="Approved local snapshot")
     parser.add_argument("--approved-manifest-sha256", required=True)
+    parser.add_argument(
+        "--dataset-root",
+        type=Path,
+        help=(
+            "Explicit approved dataset root; manifest paths and per-file SHA-256 are still checked"
+        ),
+    )
     parser.add_argument("--variant", choices=("fp16",), help="Local safetensors variant")
     parser.add_argument("--resume", type=Path, help="Trusted local step checkpoint directory")
     args = parser.parse_args()

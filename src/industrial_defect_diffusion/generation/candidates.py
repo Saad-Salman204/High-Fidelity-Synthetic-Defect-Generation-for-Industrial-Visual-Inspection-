@@ -83,7 +83,7 @@ def candidate_plan(config: dict, source: dict, runtime: dict) -> dict:
                             "adapter_checkpoint",
                             "adapter_checkpoint_sha256",
                             "real_manifest_sha256",
-                            "dataset_archive_sha256",
+                            "dataset_source_sha256",
                         )
                     },
                 }

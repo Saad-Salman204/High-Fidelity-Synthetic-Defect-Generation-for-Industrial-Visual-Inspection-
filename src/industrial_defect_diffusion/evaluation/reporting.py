@@ -6,7 +6,9 @@ from html import escape
 from pathlib import Path
 
 from ..utils.experiment_config import ARMS
+from .analysis import comparative_analysis
 from .metrics import LABELS, SCORES
+from .research_report import write_research_outputs
 
 
 def _write_json(path: Path, value: dict) -> None:
@@ -133,6 +135,51 @@ def write_results(output: Path, report: dict, runs: list[dict]) -> None:
         {key: item[key] for key in ("arm", "seed", "status")} for item in report["incomplete"]
     )
     _write_csv(output / "comparison.csv", summary, ["arm", "seed", "status", *SCORES])
+    analysis = comparative_analysis(runs, report["paired_seeds"])
+    _write_json(output / "comparative-analysis.json", analysis)
+    pair_rows = []
+    for comparison in analysis["pairwise_metric_differences"]:
+        for result in comparison["per_seed"]:
+            pair_rows.append(
+                {
+                    "baseline_arm": comparison["baseline_arm"],
+                    "candidate_arm": comparison["candidate_arm"],
+                    "metric": comparison["metric"],
+                    **result,
+                }
+            )
+    _write_csv(
+        output / "pairwise-seed-differences.csv",
+        pair_rows,
+        ["baseline_arm", "candidate_arm", "metric", "seed", "difference"],
+    )
+    _write_csv(
+        output / "per-class-aggregates.csv",
+        analysis["per_class_seed_aggregates"],
+        ["class_name", "class_id", "metric", "arm", "mean", "sample_sd", "n"],
+    )
+    _write_csv(
+        output / "per-class-f1-differences.csv",
+        [
+            {
+                "class_name": row["class_name"],
+                "baseline_arm": row["baseline_arm"],
+                "candidate_arm": row["candidate_arm"],
+                "mean_difference": row["candidate_minus_baseline"]["mean"],
+                "sample_sd": row["candidate_minus_baseline"]["sample_sd"],
+                "n": row["candidate_minus_baseline"]["n"],
+            }
+            for row in analysis["per_class_f1_differences_vs_real_only"]
+        ],
+        [
+            "class_name",
+            "baseline_arm",
+            "candidate_arm",
+            "mean_difference",
+            "sample_sd",
+            "n",
+        ],
+    )
     table = [
         "# Frozen test comparison",
         "",
@@ -170,4 +217,8 @@ def write_results(output: Path, report: dict, runs: list[dict]) -> None:
     )
     (output / "comparison.md").write_text("\n".join(table) + "\n", encoding="utf-8")
     _performance(output / "performance.svg", report)
+    from .visualizations import write_visualizations
+
+    write_visualizations(output, report, analysis, runs)
     _write_json(output / "evaluation.json", report)
+    write_research_outputs(output, report, analysis)

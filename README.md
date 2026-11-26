@@ -1,10 +1,12 @@
 # High-Fidelity Synthetic Defect Generation for Industrial Visual Inspection
 
-**CPU-tested implementation. Real NEU data verification, university GPU experiments and scientific results are pending.**
+**Research implementation and Phase 1 evaluation complete.** The repository contains the frozen NEU-CLS workflow, completed SD 1.5 + LoRA and three-arm ResNet-18 experiments, verified results, and a local React/FastAPI presentation interface. The synthetic candidate pool was selected automatically and was not individually human-approved.
 
 This project will investigate whether LoRA-adapted latent diffusion can produce useful industrial surface defect images. We will compare real-only, synthetic-only and real + synthetic classifier training on one held-out real test set. Improvement is a hypothesis, not a promised outcome.
 
 [Documentation](docs/README.md) · [Architecture](docs/architecture/overview.md) · [Implementation plan](docs/planning/implementation-plan.md) · [Backlog](docs/planning/backlog.md) · [Roadmap](docs/planning/roadmap.md) · [Protocol](docs/experiments/protocol.md) · [Contributing](CONTRIBUTING.md)
+
+For the local jury dashboard, follow the [presentation setup guide](docs/presentation/local-dashboard.md). It runs only on localhost and reads the verified Phase 1 results from ignored local artifacts.
 
 ## Start here
 
@@ -18,7 +20,7 @@ Rare industrial defects are expensive to collect and annotate. Our objectives ar
 
 NEU-CLS has 1,800 grayscale 200 × 200 images, 300 per class: crazing, inclusion, patches, pitted surface, rolled-in scale and scratches. It is balanced, so our main experiment studies a small balanced benchmark. A rare-class/scarcity ablation would be a separately approved extension.
 
-## Proposed solution and pipeline
+## Implemented research pipeline
 
 ```mermaid
 flowchart LR
@@ -36,11 +38,11 @@ flowchart LR
   T --> H
 ```
 
-Recommended baseline: SD v1.5 at 512 px, one class-prompt-conditioned UNet LoRA, and ResNet-18 at 224 px. Replicate grayscale across RGB channels for pretrained compatibility. Inpainting and EfficientNet-B0 are optional. The planned stages are acquisition, validation, splitting, preprocessing, model preparation, LoRA, generation, quality review, classifier training, evaluation and reporting.
+The completed experiment used SD v1.5 at 512 px, one class-prompt-conditioned UNet LoRA, and ResNet-18 at 224 px. Grayscale images are replicated across RGB channels for pretrained compatibility. Inpainting and EfficientNet-B0 were not part of this study. The implementation includes dataset validation, split freezing, preprocessing, LoRA training, generation, candidate review/selection, classifier training, evaluation and reporting.
 
 ## Technology stack
 
-| Layer | Proposed tools |
+| Layer | Tools |
 | --- | --- |
 | Data | Pillow, NumPy, pandas, scikit-learn |
 | Generation | PyTorch, Diffusers, PEFT, Accelerate, Transformers |
@@ -49,13 +51,13 @@ Recommended baseline: SD v1.5 at 512 px, one class-prompt-conditioned UNet LoRA,
 | Tracking | Local JSON/CSV/YAML, hashes and Git |
 | Foundation checks | Ruff, PyYAML, GitHub Actions |
 
-## Experimental methodology and planned results
+## Experimental methodology and measured results
 
-Proposed grouped, stratified split: 70/15/15 (nominally 1,260/270/270). Only training images may train the generator. All classifier arms share initialization policy, transforms, class balance, optimizer-update budget, validation selection and test manifest. Target 600 accepted synthetic images, subject to a 1,000-candidate compute cap; report actual counts and rejection rates.
+The approved grouped split is 70/15/15 (1,260/270/270) and is identified by its frozen manifest hash in the Phase 1 report. Only training images were used for generator learning. All classifier arms share initialization, preprocessing, optimizer-update budget, validation selection, and test manifest. The generation run produced 996 candidates; 783 had no audit blockers or warnings and were selected through the documented automated policy. They were not individually human-approved, and retained near-match relationships are disclosed.
 
-Report accuracy, macro precision/recall/F1, per-class metrics and confusion matrices. For generation quality, compare the reviewed synthetic pool with frozen real training images using exploratory KID and class grids. Synthetic-only describes classifier inputs: its generator still learns from real images. See the [protocol](docs/experiments/protocol.md), [CPU assessment workflow](docs/experiments/synthetic-quality.md), and [results template](reports/results-template.md).
+The nine completed ResNet-18 runs were evaluated on the same frozen set of 270 real test images. Real-only achieved 100% mean accuracy and macro F1; synthetic-only was substantially lower; real + synthetic did not improve on real-only. These results describe this split and three seeds, not statistical significance or production performance. Synthetic-only describes classifier inputs: its generator still learned from real training images. See the [protocol](docs/experiments/protocol.md), [evaluation report](presentation/web/public/research/research-report.md), [local presentation guide](docs/presentation/local-dashboard.md), and [results template](reports/results-template.md).
 
-## Three-week roadmap
+## Original three-week roadmap (planning history)
 
 | Week | Deliverable | Integration gate |
 | --- | --- | --- |
@@ -75,13 +77,14 @@ docs/architecture/       Module contracts and decision records
 docs/research/           Feasibility, references and licensing ledger
 docs/planning/           Stage plan, 20 issue drafts, schedule and risks
 docs/experiments/        Experiment protocol
-src/industrial_defect_diffusion/  Empty package and module boundaries
-tests/                   Future testing strategy
-scripts/                 CPU-only foundation validator
-reports/                 Results template and verification record
+src/industrial_defect_diffusion/  Implemented data, diffusion, generation, classification, evaluation
+presentation/             Local FastAPI API and React/Tailwind presentation
+tests/                    CPU unit and integration tests
+scripts/                  Audits, training, generation, evaluation and local workflow CLIs
+reports/                  Results template and verification record
 ```
 
-## Setup and planned execution
+## Development setup and research artifacts
 
 Prerequisites: Python 3.11, Git and a terminal. The foundation installs no PyTorch or model weights. See the [environment guide](docs/planning/setup.md) for the separate CPU ML setup and pending university GPU verification.
 

@@ -2,9 +2,11 @@
 
 Primary question: does adding generated imagery improve macro F1 on held-out NEU real images relative to real-only training? Negative or null effects are valid outcomes. Team review of this protocol precedes implementation runs. Any change gets a dated rationale and revised configuration before test evaluation.
 
+Execution note: this file preserves the initial v1 plan. The dataset's unresolved-dHash amendment and the separately authorized automated synthetic eligibility policy are documented in the split metadata and [automated-selection protocol](automated-synthetic-selection.md). The measured execution and limitations are in the [Phase 1 research report](../../presentation/web/public/research/research-report.md); do not read the proposed defaults below as a complete record of executed settings.
+
 ## Provenance and split freeze
 
-Acquire NEU-CLS from the official source after checking terms. Record URL, access date, archive filename/hash, extracted checksums, citations and exclusions. No assumed semantic dataset version: use archive SHA256 as version. Inspect corrupt files and conflicting labels; do not silently repair them.
+Acquire NEU-CLS from the official source after checking terms. Record URL, access date, archive filename/hash when available, extracted checksums, citations and exclusions. The split's `dataset_source_sha256` is the reproducible version fingerprint derived from sorted relative image paths and actual image-file SHA-256 values, cross-checked against the audit; retain an archive hash as separate acquisition provenance only when the archive is available. Never fabricate a missing archive hash. Inspect corrupt files and conflicting labels; do not silently repair them.
 
 Group exact duplicates, reviewed perceptual near-duplicates and any known source/capture siblings before splitting. Use seed 42, stratified group-aware 70/15/15 allocation; target 210/45/45 per class (1,260/270/270 total) only if grouping permits. Publish actual counts and residual grouping uncertainty. Quarantine conflicts before freeze. Neither crops nor augmentations may cross partitions.
 
@@ -33,6 +35,8 @@ Proposed common training budget: batch 24 (mixed 12 real/12 synthetic), 1,000 op
 Seeds 42, 43, 44 for paired classifier repeats if quota allows. At minimum run seed 42 in all arms; reduce repeats symmetrically before starting final runs and disclose the reduced design. Use same fixed split across repeats. Record Python/NumPy/PyTorch/worker seeds and deterministic settings; CUDA determinism is best effort and may be slower.
 
 ## Freeze and evaluation
+
+Near-duplicate dHash candidates normally require an explicit `same` or `different` review decision before freezing. A documented protocol amendment may permit unresolved candidates using `--allow-unresolved-dhash`; this does not declare them different and does not group them. The review JSON must include `protocol_amendment` with non-empty `amendment_id`, `rationale`, `reviewer`, `date`, and `acknowledgment` stating that unresolved dHash candidates remain unverified. The unresolved pairs are retained in split metadata and remain a residual leakage risk. This mechanism records the amendment only; it does not imply supervisor or peer approval. Exact SHA-256 duplicates remain grouped.
 
 Freeze manifests, hyperparameters, quality decisions and selected model hashes before opening test metrics. Evaluate each frozen checkpoint once on the same real test manifest. Technical reruns must reproduce identical artifacts or document the correction; do not tune after seeing results.
 

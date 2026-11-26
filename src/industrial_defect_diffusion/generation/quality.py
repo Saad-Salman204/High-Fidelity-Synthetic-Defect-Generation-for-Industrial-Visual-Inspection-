@@ -60,7 +60,7 @@ def _expected(root: Path, metadata: dict) -> tuple[dict, dict]:
     source = plan["source"]
     if (
         source["real_manifest_sha256"] != metadata["manifest_sha256"]
-        or source["dataset_archive_sha256"] != metadata["dataset_archive_sha256"]
+        or source["dataset_source_sha256"] != metadata["dataset_source_sha256"]
         or (source["base_model_id"], source["base_revision"]) != (MODEL_ID, REVISION)
         or not isinstance(source["adapter_checkpoint"], str)
         or not re.fullmatch(r"step-[0-9]{6,}", source["adapter_checkpoint"])

@@ -1,6 +1,6 @@
-# Planned version-1 data contracts
+# Version-1 data contracts
 
-All paths are POSIX-style relative to a configured data/artifact root; reject absolute paths, traversal, missing files, duplicate IDs and invalid labels. SHA256 is lowercase 64-character hex. JSON/YAML are UTF-8; CSV includes a header. Schema version changes require a migration note and affected-owner review. Artifacts are not committed by default.
+All paths are POSIX-style relative to a configured data/artifact root; reject absolute paths, traversal, missing files, duplicate IDs and invalid labels. SHA256 is lowercase 64-character hex. JSON/YAML are UTF-8; CSV includes a header. Schema version changes require a migration note and affected-owner review. Research artifacts remain local by default; only the explicitly verified aggregate research bundle and small exploratory gallery are prepared for publication.
 
 The lab launcher stores version-1 local session JSON containing paths and hash-bound human review receipts in ignored artifact storage. Scientific parameters remain in the existing validated experiment YAML/JSON. Config templates are proposed copies. Launcher logs record command/exit/approval events, and backups publish a completion index only after byte verification. The launcher reuses stage CLIs and their checkpoint, review and split contracts.
 
@@ -25,9 +25,9 @@ Required fields: `schema_version,image_id,relative_path,sha256,class_id,class_na
 - `split` is exactly `train`, `val` or `test`; every raw image occurs once or appears in a separate exclusions ledger.
 - `group_id` joins byte duplicates, reviewed near-duplicates and known capture/source siblings. No group crosses splits.
 - Mode/size record original decode properties, expected L/200/200; deviations require review, not silent resizing during audit.
-- Split metadata JSON records algorithm/version, seed 42, ratios, actual counts, source archive hash, group audit and manifest hash.
+- Split metadata JSON records algorithm/version, seed 42, ratios, actual counts, deterministic `dataset_source_sha256`, separate audit/review digests, unresolved dHash candidates, group audit and manifest hash. The source fingerprint is computed from sorted relative image paths and verified image-file SHA-256 values; it is not an archive hash.
 
-The #3 API is `validate_dataset(root, *, expected_paths=None, near_threshold=5) -> dict`. It applies the fixed class mapping above. Its JSON report records schema version, per-file source paths, class IDs, original SHA-256 and decode metadata where available, findings, dispositions, observed counts and inventory shortages. Counts describe discovered image candidates before exclusions. Exact groups and perceptual pairs contain member paths and pending review status. These are review inputs. Reviewers must record confirmed groups, rejected matches and exclusion decisions separately before any split is frozen. The planned `create_splits(validated_manifest, split_config)` interface belongs to #4.
+The #3 API is `validate_dataset(root, *, expected_paths=None, near_threshold=5) -> dict`. It applies the fixed class mapping above. Its JSON report records schema version, per-file source paths, class IDs, original SHA-256 and decode metadata where available, findings, dispositions, observed counts and inventory shortages. Counts describe discovered image candidates before exclusions. Exact groups and perceptual pairs contain member paths and pending review status. `freeze_splits` requires a review record; strict mode rejects unresolved dHash pairs. The documented opt-in amendment keeps those pairs explicitly unverified and ungrouped in split metadata. The freezer computes `dataset_source_sha256` from sorted relative paths and verified source-image hashes, checks the audit hashes, and stores `audit_sha256` separately.
 
 ## Preprocessing contract
 
@@ -42,7 +42,7 @@ Adapter metadata JSON: `schema_version,run_id,git_commit,config_sha256,train_man
 
 Synthetic JSONL: `schema_version,image_id,relative_path,sha256,class_id,class_name,prompt,negative_prompt,seed,base_revision,adapter_sha256,scheduler,inference_steps,guidance_scale,width,height,run_id,parent_ids,mask_id,quality_status,rejection_reason,reviewer_id`.
 
-`parent_ids=[]` and `mask_id=null` for text-to-image; optional inpainting parents/masks must resolve exclusively to training-approved sources. `quality_status` is `pending`, `accepted` or `rejected`. All candidates remain in the ledger; training loader admits only accepted records. Class prompts are intended labels until review. Synthetic records can never have real-test membership.
+`parent_ids=[]` and `mask_id=null` for text-to-image; optional inpainting parents/masks must resolve exclusively to training-approved sources. `quality_status` is `pending`, `accepted` or `rejected`. All candidates remain in the ledger. The human-review training loader admits only accepted records; the separate opt-in automated-selection loader admits only candidates bearing the documented policy marker while preserving pending status. Class prompts are intended labels until review. Synthetic records can never have real-test membership.
 
 The #13 quality evaluator consumes the #12 review export and verified frozen split. It reads only real training pixels and scores only accepted synthetic rows. Version 1 `quality.json` records source and review hashes, extractor identity, preprocessing, sampling parameters, overall and per-class KID status and statistics, grid image IDs, and reviewer observations. Unavailable statistics are null with explicit reasons. The evaluator never writes to the review ledger.
 
